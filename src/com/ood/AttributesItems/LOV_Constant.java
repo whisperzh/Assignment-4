@@ -7,13 +7,13 @@ import java.util.List;
 /**
  * Constant variables for game LHM
  */
-public class LMH_Constant {
+public class LOV_Constant {
     //Constraints
     public static final int MONSTER_COUNT_LOWER_BOUND=1;
     public static final int MONSTER_COUNT_UPPER_BOUND=3;
     public static final int PLAYER_COUNT_LOWER_BOUND=1;
     public static final int PLAYER_COUNT_UPPER_BOUND=3;
-    public static final int GRID_WIDTH=4;
+    public static final int GRID_WIDTH=2;
     public static final int BOARD_ROW=8;
     public static final int BOARD_COL=8;
     public static final int DICE_COUNT=2;
@@ -29,9 +29,16 @@ public class LMH_Constant {
 //    public static final String OBSTACLE=" \uD83C\uDF0B ";
 //    public static final String MARKET=" \uD83D\uDED2 ";
 //    public static final String PLAYER_ICON =" \uD83E\uDDD4";
-    public static final String OBSTACLE="OBS";
-    public static final String MARKET="MAR";
-    public static final String PLAYER_ICON ="PLY";
+
+    public static final String PLAIN_ICON=Color.PURPLE_BACKGROUND+"  "+Color.ANSI_RESET;
+    public static final String CAVE_ICON=Color.YELLOW_BACKGROUND+"  "+Color.ANSI_RESET;
+    public static final String BUSH_ICON=Color.GREEN_BACKGROUND+"  "+Color.ANSI_RESET;
+    public static final String INACCESSIBLE_ICON=Color.BLACK_BACKGROUND+"  "+Color.ANSI_RESET;
+    public static final String NEXUS_ICON=Color.CYAN_BACKGROUND+"  "+Color.ANSI_RESET;
+    public static final String KOULOU_ICON=Color.BLUE_BACKGROUND+"  "+Color.ANSI_RESET;
+    public static final String CHARACTER_ICON ="H";
+    public static final String MONSTER_ICON="M";
+
 
     //Paths
     public static final String ARMORY_Path= "Legends_Monsters_and_Heroes/Armory.txt";
@@ -48,9 +55,12 @@ public class LMH_Constant {
     public static final String WEAPONRY_Path= "Legends_Monsters_and_Heroes/Weaponry.txt";
     public static final String LMH_PATTERN_Path= "Legends_Monsters_and_Heroes/dragonAscii.txt";
     public static final String MAP_RULE="On this map\n" +
-            OBSTACLE+" stands for OBSATACLES\n" +
-            MARKET+" stands for MARKET\n" +
-            PLAYER_ICON+" stands for PLAYER_ICON\n";
+            INACCESSIBLE_ICON+" stands for inaccessible grid\n" +
+            PLAIN_ICON+" stands for plain grid\n" +
+            BUSH_ICON+" stands for bush grid\n"+
+            NEXUS_ICON+" stands for nexus grid\n"+
+            KOULOU_ICON+" stands for koulou grid\n"+
+            CAVE_ICON+" stands for cave grid\n";
 
     public static final float SHOP_DEFAULT_GOLD = 10000;
     public static char[] VALID_ACTIONS_ONMAP =new char[]{'w','a','s','d','W','A','S','D','Q','q','I','i','m','M'};
@@ -77,7 +87,7 @@ public class LMH_Constant {
                     "V/v: view Statistics";
 
     //Maps
-    public static final List<Vector2> OBSTACLE_LIST=new ArrayList<>(Arrays.asList(
+    public static final List<Vector2> INACCESSIBLE_LIST =new ArrayList<>(Arrays.asList(
             new Vector2(0,1),new Vector2(0,2),new Vector2(1,6),new Vector2(2,5),new Vector2(5,4),
             new Vector2(0,2),new Vector2(1,2),new Vector2(2,6),new Vector2(4,5),new Vector2(5,5),
             new Vector2(5,1),new Vector2(5,2),new Vector2(4,4))

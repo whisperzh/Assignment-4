@@ -1,10 +1,11 @@
 package com.ood.Characters;
 
+import com.ood.AttributesItems.Vector2;
 import com.ood.Enums.MonsterEnum;
 import com.ood.Inventory.IInventory;
 import com.ood.Item.IItem;
 import com.ood.Item.Spell;
-import com.ood.Views.LMH_GameView;
+import com.ood.Views.LOV_GameView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,13 +21,14 @@ public abstract class GeneralMonster implements ICharacter{
     private float HP;
     private float strength;   //damage value
     private float defense;
+    private Vector2 position;
     private MonsterEnum type;
-    private LMH_GameView view;
+    private LOV_GameView view;
     private float agility;   //Dodge ability
 
 
     public GeneralMonster(List<String> attributes) {
-        view=new LMH_GameView();
+        view=new LOV_GameView();
         HP=100;
         //Name/level/damage/defense/dodge chance
         name=attributes.get(0);
@@ -117,18 +119,6 @@ public abstract class GeneralMonster implements ICharacter{
     public void setDefense(float defense) {
         this.defense=defense;
     }
-
-    @Override
-    public boolean isObstacle() {
-        return false;
-    }
-
-    @Override
-    public boolean isMarket() {
-        return false;
-    }
-
-
 
     @Override
     public Map<String, String> getAllAttribute() {
@@ -233,6 +223,22 @@ public abstract class GeneralMonster implements ICharacter{
 
     public void die(){
         view.displayMonsterDieMessage(this);
+    }
+
+    @Override
+    public Vector2 getPosition() {
+        return position;
+    }
+
+    @Override
+    public void setPosition(Vector2 position) {
+        this.position=position;
+    }
+
+    @Override
+    public void setPosition(int row, int col) {
+        this.position.setRow(row);
+        this.position.setCol(col);
     }
 
     ///////////////////////

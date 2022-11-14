@@ -12,13 +12,13 @@ import java.util.List;
 /**
  * Concrete class of LMH player collection, encapsulate all of the LMH player, which is easy to maintain
  */
-public class LMH_PlayerCollection extends PlayerCollection<LMH_Player>{
+public class LOV_PlayerCollection extends PlayerCollection<LOV_Player>{
 
     private AbsGameView view;
 
     private List<String> playersName;
 
-    public LMH_PlayerCollection(int size, boolean isPCPlayer, IGame game) {
+    public LOV_PlayerCollection(int size, boolean isPCPlayer, IGame game) {
         super(size,isPCPlayer,game);
         view= ViewFactory.createGameView(GameEnum.LMH);
         if(!isPCPlayer)
@@ -36,12 +36,12 @@ public class LMH_PlayerCollection extends PlayerCollection<LMH_Player>{
                 playerName="PC Player";
             else
                 playerName=playersName.get(i);
-            playerList.add((LMH_Player) PlayerFactory.spawnPlayer(GameEnum.LMH,playerName,getIsPCPlayer(),getGame()));
+            playerList.add((LOV_Player) PlayerFactory.spawnPlayer(GameEnum.LMH,playerName,getIsPCPlayer(),getGame()));
         }
     }
 
     @Override
-    public void playerChooseHero() {
+    public void playerChooseCharacter() {
         for(var p: playerList)
         {
             p.chooseYourHero();

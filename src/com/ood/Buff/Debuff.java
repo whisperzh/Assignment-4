@@ -1,6 +1,6 @@
 package com.ood.Buff;
 
-import com.ood.AttributesItems.LMH_Constant;
+import com.ood.AttributesItems.LOV_Constant;
 import com.ood.Characters.ICharacter;
 import com.ood.Enums.CharacterAttributeEnum;
 
@@ -24,13 +24,13 @@ public class Debuff implements IBuff<ICharacter> {
             switch (e)
             {
                 case DAMAGE:
-                    character.setStrength(character.getStrength()* LMH_Constant.DEBUFF_DECREMENT_FACTOR);
+                    character.setStrength(character.getStrength()* LOV_Constant.DEBUFF_DECREMENT_FACTOR);
                     break;
                 case DEFENSE:
-                    character.setDefense(character.getDefense()* LMH_Constant.DEBUFF_DECREMENT_FACTOR);
+                    character.setDefense(character.getDefense()* LOV_Constant.DEBUFF_DECREMENT_FACTOR);
                     break;
                 case AGILITY:
-                    character.setAgility(character.getAgility()* LMH_Constant.DEBUFF_DECREMENT_FACTOR);
+                    character.setAgility(character.getAgility()* LOV_Constant.DEBUFF_DECREMENT_FACTOR);
                     break;
             }
         }

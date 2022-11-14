@@ -1,46 +1,56 @@
 package com.ood.Game;
 
-import com.ood.AttributesItems.LMH_Constant;
+import com.ood.AttributesItems.LOV_Constant;
 import com.ood.Enums.GameEnum;
 import com.ood.Factories.GameBoardFactory;
 import com.ood.Factories.ViewFactory;
-import com.ood.Judge.LMH_Judge;
-import com.ood.Players.LMH_Player;
-import com.ood.Team.LMH_Team;
+import com.ood.Judge.LOV_Judge;
+import com.ood.Players.LOV_Player;
+import com.ood.Team.LOV_Team;
 
 /**
  * The concrete class of LMH game
  */
-public class LMH_Game extends BoardGame<LMH_Player>{
+public class LOV_Game extends BoardGame<LOV_Player>{
 
     private final GameEnum type=GameEnum.LMH;
 
-    private int sizeOfATeam =3;
+    private int sizeOfATeam =LOV_Constant.PLAYER_COUNT_UPPER_BOUND;
     //by default is 3
 
 
-    public LMH_Game() {
+    public LOV_Game() {
         super();
-        judge=new LMH_Judge(this);
+        judge=new LOV_Judge(this);
         setView(ViewFactory.createGameView(type));
         setBoard(GameBoardFactory.createGameBoard(type));
-        //get how many players
-        sizeOfATeam=getView().collectPlayersCount(LMH_Constant.PLAYER_COUNT_LOWER_BOUND, LMH_Constant.PLAYER_COUNT_UPPER_BOUND);
-        team=new LMH_Team("PLAYER_TEAM", sizeOfATeam,false,this);
+
+
+        team1 =new LOV_Team("Hero_TEAM", getPlayerCount(),false,this);
+        team2 =new LOV_Team("Monster_TEAM",getPlayerCount(),true,this);
+
         var dataCenter=GameController.getDataCenterInstance();
         getView().displayParserInfo(dataCenter.getHeroParseCollection(),true);
+
+
         int characterPerPlayer=getView().collectCharactersCount();
-        team.getPlayerCollection().setCharacterPerPlayer(characterPerPlayer);
-        team.getPlayerCollection().playerChooseHero();
+
+        team1.getPlayerCollection().setCharacterPerPlayer(characterPerPlayer);
+        team1.getPlayerCollection().playerChooseCharacter();
+
+        team2.getPlayerCollection().setCharacterPerPlayer(characterPerPlayer);
+        team2.getPlayerCollection().playerChooseCharacter();
+
+
         getBoard().show();
-        getView().jout(LMH_Constant.MAP_RULE);
+        getView().jout(LOV_Constant.MAP_RULE);
     }
 
     @Override
     public void start() {
         while (!judge.judgeGameOver())
         {
-            team.move();
+            team1.move();
             if(judge.judgeGameOver())
                 break;
 

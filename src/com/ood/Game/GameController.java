@@ -1,6 +1,6 @@
 package com.ood.Game;
 
-import com.ood.AttributesItems.LMH_DataCenter;
+import com.ood.AttributesItems.LOV_DataCenter;
 import com.ood.Enums.GameEnum;
 import com.ood.Enums.ViewEnum;
 import com.ood.Factories.GameFactory;
@@ -18,7 +18,7 @@ public class GameController {
 
     private IGame game;
 
-    private static LMH_DataCenter dataCenter;
+    private static LOV_DataCenter dataCenter;
 
     public GameController() {
         gameControllerView= (GameControllerView) ViewFactory.createView(ViewEnum.CONTROLLER);
@@ -27,13 +27,13 @@ public class GameController {
     public void chooseGame(){
         gameControllerView.displayGameChoose();
         gameChoice=gameControllerView.collectUsersGameChoice();
-        dataCenter=new LMH_DataCenter();
+        dataCenter=new LOV_DataCenter();
         game= GameFactory.createGame(GameEnum.intToGameType(gameChoice));
     }
 
-    public static LMH_DataCenter getDataCenterInstance(){
+    public static LOV_DataCenter getDataCenterInstance(){
         if(dataCenter==null)
-            dataCenter=new LMH_DataCenter();
+            dataCenter=new LOV_DataCenter();
         return dataCenter;
     }
 

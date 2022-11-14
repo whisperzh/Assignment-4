@@ -1,15 +1,15 @@
 package com.ood.Battle;
 
-import com.ood.AttributesItems.LMH_Constant;
+import com.ood.AttributesItems.LOV_Constant;
 import com.ood.Characters.GeneralHero;
 import com.ood.Characters.ICharacter;
 import com.ood.Enums.ViewEnum;
 import com.ood.Factories.ViewFactory;
 import com.ood.Item.Spell;
-import com.ood.Judge.LMH_Judge;
-import com.ood.Team.LMH_Team;
+import com.ood.Judge.LOV_Judge;
+import com.ood.Team.LOV_Team;
 import com.ood.Team.Team;
-import com.ood.Views.LMH_BattleView;
+import com.ood.Views.LOV_BattleView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,29 +19,29 @@ import java.util.Stack;
 /**
  * concrete class of battle
  */
-public class LMH_Battle implements IBattle{
+public class LOV_Battle implements IBattle{
 
     private List<ICharacter> heros;
 
     private List<ICharacter> monsters;
 
-    private LMH_Judge judge;
+    private LOV_Judge judge;
 
-    private LMH_BattleView view;
+    private LOV_BattleView view;
 
-    private LMH_Team monsterTeam;
+    private LOV_Team monsterTeam;
 
-    private LMH_Team humanPlayers;
+    private LOV_Team humanPlayers;
 
     private Stack<NavigableMap<String ,String >> battleStack;
 
-    public LMH_Battle(Team team) {
-        this.humanPlayers = (LMH_Team) team;
-        judge=new LMH_Judge();
-        monsterTeam=new LMH_Team("MONSTER_TEAM",team.size(),true,team.getGame());//Computer Player
+    public LOV_Battle(Team team) {
+        this.humanPlayers = (LOV_Team) team;
+        judge=new LOV_Judge();
+        monsterTeam=new LOV_Team("MONSTER_TEAM",team.size(),true,team.getGame());//Computer Player
         monsterTeam.getPlayerCollection().setCharacterPerPlayer(team.getPlayerAt(0).getCharacterCount());
         monsterTeam.playerChooseHero();
-        view= (LMH_BattleView) ViewFactory.createView(ViewEnum.BATTLEFIELD);
+        view= (LOV_BattleView) ViewFactory.createView(ViewEnum.BATTLEFIELD);
         initPlayerCollection();
     }
 
@@ -95,7 +95,7 @@ public class LMH_Battle implements IBattle{
 
     private void chooseActionAndDo(ICharacter hero){
         //get player's choice.
-        char action=Character.toLowerCase(view.collectPlayersAction(LMH_Constant.VALID_ACTIONS_INBATTLE, LMH_Constant.ACTION_HELP_INBATTLE));
+        char action=Character.toLowerCase(view.collectPlayersAction(LOV_Constant.VALID_ACTIONS_INBATTLE, LOV_Constant.ACTION_HELP_INBATTLE));
         switch (action)
         {
             case 'a':

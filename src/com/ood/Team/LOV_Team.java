@@ -1,22 +1,22 @@
 package com.ood.Team;
 
 import com.ood.Game.IGame;
-import com.ood.Players.LMH_Player;
-import com.ood.Players.LMH_PlayerCollection;
+import com.ood.Players.LOV_Player;
+import com.ood.Players.LOV_PlayerCollection;
 
 /**
  * Concrete team class of LMH
  */
-public class LMH_Team extends Team<LMH_Player>{
+public class LOV_Team extends Team<LOV_Player>{
 
-    public LMH_Team(String name, int size, boolean isPCPlayer, IGame game) {
+    public LOV_Team(String name, int size, boolean isPCPlayer, IGame game) {
         super(name, size, isPCPlayer, game);
-        playerCollection = new LMH_PlayerCollection(size(),isPCPlayer,game);
+        playerCollection = new LOV_PlayerCollection(size(),isPCPlayer,game);
 
     }
 
     public void playerChooseHero() {
-        getPlayerCollection().playerChooseHero();
+        getPlayerCollection().playerChooseCharacter();
     }
 
     @Override

@@ -2,7 +2,7 @@ package com.ood.Factories;
 
 import com.ood.Enums.GameEnum;
 import com.ood.Game.IGame;
-import com.ood.Game.LMH_Game;
+import com.ood.Game.LOV_Game;
 
 /**
  * Factory that produce Games
@@ -12,7 +12,7 @@ public class GameFactory {
         switch (gameEnum)
         {
             case LMH:
-                return new LMH_Game();
+                return new LOV_Game();
             default:
                 break;
         }

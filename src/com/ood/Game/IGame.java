@@ -16,5 +16,5 @@ public interface IGame <T1 extends IBoard,T2 extends AbsGameView>{
     T1 getBoard();
     T2 getView();
     void start();
-    Team getTeam();
+    Team getTeam1();
 }

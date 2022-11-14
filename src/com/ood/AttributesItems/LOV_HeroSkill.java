@@ -9,10 +9,10 @@ import java.util.Set;
 /**
  * Hero's attributes
  */
-public class LMH_HeroSkill {
+public class LOV_HeroSkill {
     private Map<CharacterAttributeEnum,Float> skills;
 
-    public LMH_HeroSkill() {
+    public LOV_HeroSkill() {
         this.skills = new HashMap<>();
     }
 

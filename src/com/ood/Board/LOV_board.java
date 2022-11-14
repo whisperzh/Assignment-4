@@ -1,44 +1,44 @@
 package com.ood.Board;
 
-import com.ood.AttributesItems.LMH_Constant;
+import com.ood.AttributesItems.LOV_Constant;
 import com.ood.Grid.GridSpace;
-import com.ood.Views.LMH_BoardView;
+import com.ood.Views.LOV_BoardView;
 
 
 /**
  * concrete board for Legends: Monsters and Heroes game
  */
-public class LMH_board extends MovableBoard{
+public class LOV_board extends MovableBoard{
 
-    public LMH_board() {
+    public LOV_board() {
         super();
         generateObstacles();
         generateMarkets();
-        setView(new LMH_BoardView());
+        setView(new LOV_BoardView());
         getView().initBoardView(getRowNum(),getColNum());
     }
 
-    public LMH_board(int row, int col) {
+    public LOV_board(int row, int col) {
         super(row, col);
         generateObstacles();
         generateMarkets();
-        setView(new LMH_BoardView());
+        setView(new LOV_BoardView());
         getView().initBoardView(row,col);
     }
 
     public void generateObstacles(){
-        for(int i = 0; i< LMH_Constant.OBSTACLE_LIST.size(); i++)
+        for(int i = 0; i< LOV_Constant.INACCESSIBLE_LIST.size(); i++)
         {
-            GridSpace gridSpace = getGrid(LMH_Constant.OBSTACLE_LIST.get(i));
+            GridSpace gridSpace = getGrid(LOV_Constant.INACCESSIBLE_LIST.get(i));
             gridSpace.setObstacle();
         }
 
     }
 
     private void generateMarkets(){
-        for(int i = 0; i< LMH_Constant.MARKET_LIST.size(); i++)
+        for(int i = 0; i< LOV_Constant.MARKET_LIST.size(); i++)
         {
-            GridSpace gridSpace = getGrid(LMH_Constant.MARKET_LIST.get(i));
+            GridSpace gridSpace = getGrid(LOV_Constant.MARKET_LIST.get(i));
             gridSpace.setMarket();
         }
     }

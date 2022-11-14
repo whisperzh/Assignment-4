@@ -12,14 +12,14 @@ import java.util.List;
 /**
  * Data center, player can get data easily from here
  */
-public class LMH_DataCenter {
+public class LOV_DataCenter {
     private ParseCollection marketParseCollection;
 
     private ParseCollection heroParseCollection;
 
     private ParseCollection monsterParseCollection;
 
-    public LMH_DataCenter() {
+    public LOV_DataCenter() {
         initParserCollection();
     }
 
@@ -28,18 +28,18 @@ public class LMH_DataCenter {
         heroParseCollection=new ParseCollection();
         monsterParseCollection=new ParseCollection();
 
-        marketParseCollection.AddParser(new ItemParser(LMH_Constant.ARMORY_Path, ItemEnum.ARMORY));
-        marketParseCollection.AddParser(new ItemParser(LMH_Constant.WEAPONRY_Path, ItemEnum.WEAPONRY));
-        marketParseCollection.AddParser(new ItemParser(LMH_Constant.POTIONS_Path, ItemEnum.POTIONS));
-        marketParseCollection.AddParser(new ItemParser(LMH_Constant.FIRESPELL_Path,ItemEnum.FIRE_SPELL));
-        marketParseCollection.AddParser(new ItemParser(LMH_Constant.ICESPELL_Path,ItemEnum.ICE_SPELL));
-        marketParseCollection.AddParser(new ItemParser(LMH_Constant.LIGHTNINGSPELL_Path,ItemEnum.LIGHTENING_SPELL));
+        marketParseCollection.AddParser(new ItemParser(LOV_Constant.ARMORY_Path, ItemEnum.ARMORY));
+        marketParseCollection.AddParser(new ItemParser(LOV_Constant.WEAPONRY_Path, ItemEnum.WEAPONRY));
+        marketParseCollection.AddParser(new ItemParser(LOV_Constant.POTIONS_Path, ItemEnum.POTIONS));
+        marketParseCollection.AddParser(new ItemParser(LOV_Constant.FIRESPELL_Path,ItemEnum.FIRE_SPELL));
+        marketParseCollection.AddParser(new ItemParser(LOV_Constant.ICESPELL_Path,ItemEnum.ICE_SPELL));
+        marketParseCollection.AddParser(new ItemParser(LOV_Constant.LIGHTNINGSPELL_Path,ItemEnum.LIGHTENING_SPELL));
 
-        String[] hparsePaths=new String[]{LMH_Constant.PALADINS_Path,LMH_Constant.SORCERERS_Path,LMH_Constant.WARRIORS_Path};
+        String[] hparsePaths=new String[]{LOV_Constant.PALADINS_Path, LOV_Constant.SORCERERS_Path, LOV_Constant.WARRIORS_Path};
         HeroEnum[] heroEnums=new HeroEnum[]{HeroEnum.PALADIN,HeroEnum.SORCERER,HeroEnum.WARRIOR};
         heroParseCollection.AddParsers(Arrays.asList(hparsePaths),Arrays.asList(heroEnums));
 
-        String[] mparsePaths=new String[]{LMH_Constant.SPIRITS_Path,LMH_Constant.EXOSKELETONS_Path,LMH_Constant.DRAGONS_Path};
+        String[] mparsePaths=new String[]{LOV_Constant.SPIRITS_Path, LOV_Constant.EXOSKELETONS_Path, LOV_Constant.DRAGONS_Path};
         MonsterEnum[] monsterEnums=new MonsterEnum[]{MonsterEnum.SPIRIT,MonsterEnum.EXOSKELETON,MonsterEnum.DRAGON};
         monsterParseCollection.AddParsers(Arrays.asList(mparsePaths),Arrays.asList(monsterEnums));
     }

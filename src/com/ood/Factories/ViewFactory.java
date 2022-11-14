@@ -20,7 +20,7 @@ public class ViewFactory {
                 v=new MarketView();
                 break;
             case BATTLEFIELD:
-                v=new LMH_BattleView();
+                v=new LOV_BattleView();
                 break;
             default:
                 v=new MainView();
@@ -34,7 +34,7 @@ public class ViewFactory {
         switch (gameEnum)
         {
             case LMH:
-                v = new LMH_GameView();
+                v = new LOV_GameView();
             default:
                 break;
         }

@@ -1,35 +1,35 @@
 package com.ood.Grid;
 
-import com.ood.Enums.LMHGridEnum;
+import com.ood.Enums.LOVGridEnum;
 
 /**
  * The concrete grid collection class of LMH
  */
-public class LMH_GridCollections extends GridCollections<LMH_Grid>{
+public class LOV_GridCollections extends GridCollections<Plain>{
 
     private int widthOfGridIcon;
 
-    public LMH_GridCollections() {
+    public LOV_GridCollections() {
         super();
         initGrids();
     }
 
-    public LMH_GridCollections(int size) {
+    public LOV_GridCollections(int size) {
         super(size);
         initGrids();
     }
 
-    public LMH_GridCollections(int row, int col) {
+    public LOV_GridCollections(int row, int col) {
         super(row, col);
         initGrids();
     }
 
     @Override
-    public void setGridAt(LMH_Grid grid,int x,int y) {
+    public void setGridAt(Plain grid, int x, int y) {
         getGrids().get(y).set(x,grid);
     }
 
-    public void setGridTypeAt(int x, int y, LMHGridEnum type){
+    public void setGridTypeAt(int x, int y, LOVGridEnum type){
         getGrid(x,y).setType(type);
     }
 
@@ -43,7 +43,7 @@ public class LMH_GridCollections extends GridCollections<LMH_Grid>{
         {
             for(int j=0;j<getCol();j++)
             {
-                grids.get(i).add(new LMH_Grid());
+                grids.get(i).add(new Plain());
             }
         }
 

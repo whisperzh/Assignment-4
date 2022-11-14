@@ -1,5 +1,6 @@
 package com.ood.Game;
 
+import com.ood.AttributesItems.LOV_Constant;
 import com.ood.Board.IBoard;
 import com.ood.Judge.IGameJudge;
 import com.ood.Players.IPlayer;
@@ -11,13 +12,14 @@ import com.ood.Views.AbsGameView;
  */
 
 public abstract class BoardGame<T extends IPlayer> implements IGame{
-    private int playerNums;
 
-    private int teamNums;
+    private int playerCount= LOV_Constant.PLAYER_COUNT_LOWER_BOUND;
 
     private IBoard board;
 
-    protected Team<T> team;
+    protected Team<T> team1;
+
+    protected Team<T> team2;
 
     protected static IGameJudge judge;
 
@@ -26,9 +28,11 @@ public abstract class BoardGame<T extends IPlayer> implements IGame{
     public BoardGame() {
     }
 
-    public Team getTeam() {
-        return team;
+    public Team getTeam1() {
+        return team1;
     }
+
+    public Team getTeam2(){return team2;}
 
     @Override
     public void setBoard(IBoard board) {
@@ -58,19 +62,12 @@ public abstract class BoardGame<T extends IPlayer> implements IGame{
         return board;
     }
 
-    public int getPlayerNums() {
-        return playerNums;
+    public int getPlayerCount() {
+        return playerCount;
     }
 
-    public int getTeamNums() {
-        return teamNums;
+    public void setPlayerCount(int playerCount) {
+        this.playerCount = playerCount;
     }
 
-    public void setTeamNums(int teamNums) {
-        this.teamNums = teamNums;
-    }
-
-    public void setPlayerNums(int playerNums) {
-        this.playerNums = playerNums;
-    }
 }

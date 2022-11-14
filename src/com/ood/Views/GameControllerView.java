@@ -1,6 +1,6 @@
 package com.ood.Views;
 
-import com.ood.AttributesItems.LMH_Constant;
+import com.ood.AttributesItems.LOV_Constant;
 import com.ood.Util.ACSII_PatternParser;
 import com.ood.Util.IConfigParser;
 
@@ -38,7 +38,7 @@ public class GameControllerView extends View{
             switch (i)
             {
                 case 0:
-                    IConfigParser parser=new ACSII_PatternParser(LMH_Constant.LMH_PATTERN_Path);
+                    IConfigParser parser=new ACSII_PatternParser(LOV_Constant.LMH_PATTERN_Path);
                     jout(parser.getPattern());
                     break;
             }

@@ -1,10 +1,10 @@
 package com.ood.Judge;
 
-import com.ood.AttributesItems.LMH_Constant;
+import com.ood.AttributesItems.LOV_Constant;
 import com.ood.AttributesItems.Vector2;
 import com.ood.Characters.GeneralHero;
 import com.ood.Characters.ICharacter;
-import com.ood.Enums.LMHGridEnum;
+import com.ood.Enums.LOVGridEnum;
 import com.ood.Game.IGame;
 import com.ood.Item.IItem;
 import com.ood.Item.Spell;
@@ -14,14 +14,14 @@ import java.util.List;
 /**
  * The concrete class of judge in LMH game
  */
-public class LMH_Judge extends BoardGameJudge{
+public class LOV_Judge extends BoardGameJudge{
 
     private static boolean isGameOver=false;
 
-    public LMH_Judge() {
+    public LOV_Judge() {
     }
 
-    public LMH_Judge(IGame game) {
+    public LOV_Judge(IGame game) {
         super(game);
     }
 
@@ -32,7 +32,7 @@ public class LMH_Judge extends BoardGameJudge{
 
     @Override
     public boolean canEnterMarket(Vector2 currentPosition) {
-        return game.getBoard().getGrid(currentPosition).getType().equals(LMHGridEnum.MARKET);
+        return game.getBoard().getGrid(currentPosition).getType().equals(LOVGridEnum.MARKET);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class LMH_Judge extends BoardGameJudge{
         int sum=0;
         for(int i=0;i< rollDice.size();i++)
             sum+=rollDice.get(i);
-        if(sum> LMH_Constant.BATTLE_CONSTRAINT)
+        if(sum> LOV_Constant.BATTLE_CONSTRAINT)
             return false;
         else
             return true;

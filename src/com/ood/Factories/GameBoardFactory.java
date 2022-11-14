@@ -1,6 +1,6 @@
 package com.ood.Factories;
 
-import com.ood.Board.LMH_board;
+import com.ood.Board.LOV_board;
 import com.ood.Board.MovableBoard;
 import com.ood.Enums.GameEnum;
 
@@ -13,7 +13,7 @@ public class GameBoardFactory {
         switch (gameEnum)
         {
             case LMH:
-                board=new LMH_board();
+                board=new LOV_board();
             default:
                 break;
         }

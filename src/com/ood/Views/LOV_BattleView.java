@@ -3,7 +3,7 @@ package com.ood.Views;
 import com.ood.Characters.GeneralMonster;
 import com.ood.Characters.ICharacter;
 import com.ood.Players.IPlayer;
-import com.ood.Team.LMH_Team;
+import com.ood.Team.LOV_Team;
 import com.ood.Team.SimpleCollection;
 import com.ood.Util.ParseCollection;
 
@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * View component for Battle, show common notifications in battle
  */
-public class LMH_BattleView extends AbsGameView{
+public class LOV_BattleView extends AbsGameView{
     @Override
     public void displayGameTitle() {
 
@@ -90,7 +90,7 @@ public class LMH_BattleView extends AbsGameView{
         joutDivider();
     }
 
-    public void displayAttackMonsterChoices(LMH_Team mon_team){
+    public void displayAttackMonsterChoices(LOV_Team mon_team){
         jout("Please choose a monster to attack");
         List<List<String >> rows=new ArrayList<>();
         List<String > title=new ArrayList<>();

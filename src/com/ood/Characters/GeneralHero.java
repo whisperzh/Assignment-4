@@ -1,7 +1,8 @@
 package com.ood.Characters;
 
 import com.ood.AttributesItems.Equipment;
-import com.ood.AttributesItems.LMH_HeroSkill;
+import com.ood.AttributesItems.LOV_HeroSkill;
+import com.ood.AttributesItems.Vector2;
 import com.ood.AttributesItems.Wallet;
 import com.ood.Enums.HeroEnum;
 import com.ood.Inventory.CharacterInventory;
@@ -9,7 +10,7 @@ import com.ood.Inventory.IInventory;
 import com.ood.Item.IItem;
 import com.ood.Item.Potion;
 import com.ood.Item.Spell;
-import com.ood.Views.LMH_GameView;
+import com.ood.Views.LOV_GameView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -33,12 +34,13 @@ public abstract class GeneralHero implements ICharacter{
     private Wallet myWallet;
     protected Equipment equipment;
     private IInventory<IItem> inventory;
-    protected LMH_HeroSkill skills;
+    protected LOV_HeroSkill skills;
     private HeroEnum type;
-    private LMH_GameView view;
+    private LOV_GameView view;
+    private Vector2 position;
 
     public GeneralHero(List<String> attributes) {
-        view=new LMH_GameView();
+        view=new LOV_GameView();
         inventory=new CharacterInventory();
         level=1;
         HP=100;
@@ -208,16 +210,6 @@ public abstract class GeneralHero implements ICharacter{
     }
 
     @Override
-    public boolean isObstacle() {
-        return false;
-    }
-
-    @Override
-    public boolean isMarket() {
-        return false;
-    }
-
-    @Override
     public Map<String, String> getAllAttribute() {
         Map<String ,String > ans=new HashMap<>();
         ans.put("name",getName());
@@ -342,9 +334,23 @@ public abstract class GeneralHero implements ICharacter{
         }
     }
 
-
     public void faint(){
         view.displayHeroFaintMessage(this);
     }
 
+    @Override
+    public Vector2 getPosition() {
+        return position;
+    }
+
+    @Override
+    public void setPosition(Vector2 position) {
+        this.position=position;
+    }
+
+    @Override
+    public void setPosition(int row, int col) {
+        this.position.setRow(row);
+        this.position.setCol(col);
+    }
 }

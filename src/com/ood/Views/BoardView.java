@@ -1,6 +1,6 @@
 package com.ood.Views;
 
-import com.ood.AttributesItems.LMH_Constant;
+import com.ood.AttributesItems.LOV_Constant;
 import com.ood.Grid.GridCollections;
 import com.ood.Grid.GridSpace;
 
@@ -14,7 +14,7 @@ public class BoardView extends View{
 
     private int logicalSizeY;
 
-    private int widthOfVisualGrid= LMH_Constant.GRID_WIDTH;
+    private int widthOfVisualGrid= LOV_Constant.GRID_WIDTH;
 
     public char[][] getBoardGraphicalGrid() {
         return boardGraphicalGrid;

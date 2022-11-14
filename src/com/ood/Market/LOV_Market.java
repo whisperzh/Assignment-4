@@ -1,6 +1,6 @@
 package com.ood.Market;
 
-import com.ood.AttributesItems.LMH_Constant;
+import com.ood.AttributesItems.LOV_Constant;
 import com.ood.AttributesItems.Wallet;
 import com.ood.Characters.GeneralHero;
 import com.ood.Enums.ViewEnum;
@@ -10,7 +10,7 @@ import com.ood.Inventory.IInventory;
 import com.ood.Inventory.MarketInventory;
 import com.ood.Item.IItem;
 import com.ood.Judge.IGameJudge;
-import com.ood.Judge.LMH_Judge;
+import com.ood.Judge.LOV_Judge;
 import com.ood.Views.MarketView;
 
 import java.util.List;
@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * The concrete market class for LMH game only.
  */
-public class LMH_Market implements IMarket<IItem> {
+public class LOV_Market implements IMarket<IItem> {
 
     private IInventory<IItem> marketInventory;
 
@@ -28,12 +28,12 @@ public class LMH_Market implements IMarket<IItem> {
 
     private GeneralHero customer;
 
-    public LMH_Market() {
+    public LOV_Market() {
         marketView= (MarketView) ViewFactory.createView(ViewEnum.MARKET);
 
         marketInventory=new MarketInventory();
         marketInventory.addParserCollection(GameController.getDataCenterInstance().getMarketParseCollection());
-        myWallet=new Wallet(LMH_Constant.SHOP_DEFAULT_GOLD);
+        myWallet=new Wallet(LOV_Constant.SHOP_DEFAULT_GOLD);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class LMH_Market implements IMarket<IItem> {
 
     @Override
     public void chooseActionAndDo() {
-        char action=getView().collectPlayersAction(LMH_Constant.VALID_ACTIONS_INMARKET,LMH_Constant.ACTION_HELP_INMARKET);
+        char action=getView().collectPlayersAction(LOV_Constant.VALID_ACTIONS_INMARKET, LOV_Constant.ACTION_HELP_INMARKET);
         action=Character.toLowerCase(action);
         switch (action)
         {
@@ -120,7 +120,7 @@ public class LMH_Market implements IMarket<IItem> {
     }
 
     private IGameJudge getJudge(){
-        IGameJudge judge=new LMH_Judge();
+        IGameJudge judge=new LOV_Judge();
         return judge;
     }
 

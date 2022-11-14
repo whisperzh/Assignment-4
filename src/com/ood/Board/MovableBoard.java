@@ -1,42 +1,42 @@
 package com.ood.Board;
 
-import com.ood.AttributesItems.LMH_Constant;
+import com.ood.AttributesItems.LOV_Constant;
 import com.ood.AttributesItems.Vector2;
+import com.ood.Characters.ICharacter;
 import com.ood.Grid.GridCollections;
 import com.ood.Grid.GridSpace;
-import com.ood.Grid.LMH_Grid;
-import com.ood.Grid.LMH_GridCollections;
-import com.ood.Players.IPlayer;
-import com.ood.Players.LMH_Player;
+import com.ood.Grid.Plain;
+import com.ood.Grid.LOV_GridCollections;
+import com.ood.Players.LOV_Player;
 import com.ood.Views.BoardView;
 
 /**
  * a board which enables pieces to move
  */
 public abstract class MovableBoard implements IBoard{
-    private GridCollections<LMH_Grid> gridCollections;
+    private GridCollections<Plain> gridCollections;
 
     private BoardView view;
 
-    private int rowNum= LMH_Constant.BOARD_ROW;
+    private int rowNum= LOV_Constant.BOARD_ROW;
 
-    private int colNum=LMH_Constant.BOARD_COL;
+    private int colNum= LOV_Constant.BOARD_COL;
 
     public MovableBoard() {
-        gridCollections = new LMH_GridCollections(rowNum,colNum);
+        gridCollections = new LOV_GridCollections(rowNum,colNum);
 
     }
 
     public MovableBoard(int row,int col){
         rowNum=row;
         colNum=col;
-        gridCollections = new LMH_GridCollections(rowNum,colNum);
+        gridCollections = new LOV_GridCollections(rowNum,colNum);
     }
-    public GridCollections<LMH_Grid> getGridCollections() {
+    public GridCollections<Plain> getGridCollections() {
         return gridCollections;
     }
 
-    public void setGridCollections(GridCollections<LMH_Grid> gridCollections) {
+    public void setGridCollections(GridCollections<Plain> gridCollections) {
         this.gridCollections = gridCollections;
     }
 
@@ -75,10 +75,10 @@ public abstract class MovableBoard implements IBoard{
         return getGrid(position.getRow(),position.getCol());
     }
 
-    public void movePiece(IPlayer player, int row, int col){
-        Vector2 originalPos= ((LMH_Player)player).getPosition();
-        getGrid(originalPos).setDefaultIcon();
-        ((LMH_Player)player).setPosition(row,col);
-        getGrid(row,col).setPlayer(player);
+    public void movePiece(ICharacter character, int row, int col){
+        Vector2 originalPos= character.getPosition();
+        getGrid(originalPos).updateIcon();
+        character.setPosition(row,col);
+        getGrid(row,col).setHeroSlot(character);
     }
 }

@@ -3,7 +3,7 @@ package com.ood.Factories;
 import com.ood.Enums.GameEnum;
 import com.ood.Game.IGame;
 import com.ood.Players.IPlayer;
-import com.ood.Players.LMH_Player;
+import com.ood.Players.LOV_Player;
 
 /**
  * Factory which used for create players
@@ -14,7 +14,7 @@ public class PlayerFactory {
         switch (gameType)
         {
             case LMH:
-                player=new LMH_Player(isPCPlayer,playerName,game);
+                player=new LOV_Player(isPCPlayer,playerName,game);
                 break;
             default:
                 player=null;

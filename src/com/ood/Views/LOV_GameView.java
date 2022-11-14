@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * The concrete game view class for LMH
  */
-public class LMH_GameView extends AbsGameView {
+public class LOV_GameView extends AbsGameView {
 
     @Override
     public void displayGameTitle() {

@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * Encapsulated all of the Character methods
  */
-public interface ICharacter extends IGridContent {
+public interface ICharacter extends IMove {
     String getName();
     void setName(String name);
     int getLevel();

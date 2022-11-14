@@ -64,7 +64,7 @@ public abstract class PlayerCollection <T extends IPlayer>{
         return game;
     }
 
-    public abstract void playerChooseHero();
+    public abstract void playerChooseCharacter();
 
     public abstract void setCharacterPerPlayer(int count);
 }

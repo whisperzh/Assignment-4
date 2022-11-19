@@ -70,7 +70,7 @@ public class LOV_Market implements IMarket<IItem> {
 
     @Override
     public void chooseActionAndDo() {
-        char action=getView().collectPlayersAction(LOV_Constant.VALID_ACTIONS_INMARKET, LOV_Constant.ACTION_HELP_INMARKET);
+        char action=getView().collectUsersAction(LOV_Constant.VALID_ACTIONS_INMARKET, LOV_Constant.ACTION_HELP_INMARKET);
         action=Character.toLowerCase(action);
         switch (action)
         {

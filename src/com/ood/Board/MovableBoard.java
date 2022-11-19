@@ -71,6 +71,12 @@ public abstract class MovableBoard implements IBoard{
     }
 
     @Override
+    public void setGridAt(int row,int col, Plain gridSpace){
+        gridCollections.setGridAt(gridSpace,row,col);
+
+    }
+
+    @Override
     public GridSpace getGrid(Vector2 position) {
         return getGrid(position.getRow(),position.getCol());
     }

@@ -4,6 +4,7 @@ import com.ood.AttributesItems.LOV_Constant;
 import com.ood.Enums.GameEnum;
 import com.ood.Factories.GameBoardFactory;
 import com.ood.Factories.ViewFactory;
+import com.ood.Judge.IGameJudge;
 import com.ood.Judge.LOV_Judge;
 import com.ood.Players.LOV_Player;
 import com.ood.Team.LOV_Team;
@@ -60,7 +61,6 @@ public class LOV_Game extends BoardGame<LOV_Player>{
         GameController.getDataCenterInstance().reset();
         getView().displayPlayerScoreTable();
     }
-
 
     public GameEnum getType() {
         return type;

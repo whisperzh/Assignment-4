@@ -143,6 +143,11 @@ public class LOV_GameView extends AbsGameView {
         return jin_BorderedInt(1,3);
     }
 
+    @Override
+    public void reportCharacterInfo(ICharacter character) {
+        jout("You are now operating "+character);
+    }
+
     public void displayHeroFaintMessage(ICharacter character) {
         joutDivider();
         jout(character.getName()+" fainted!");
@@ -162,4 +167,6 @@ public class LOV_GameView extends AbsGameView {
     {
         jout(character.getName()+" dodged the incoming attack!");
     }
+
+
 }

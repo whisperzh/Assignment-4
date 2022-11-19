@@ -2,11 +2,8 @@ package com.ood.Players;
 
 import com.ood.AttributesItems.Dice;
 import com.ood.AttributesItems.LOV_Constant;
-import com.ood.AttributesItems.Vector2;
 import com.ood.Battle.IBattle;
-import com.ood.Battle.LOV_Battle;
-import com.ood.Board.MovableBoard;
-import com.ood.Characters.GeneralHero;
+import com.ood.Characters.CharacterController;
 import com.ood.Characters.ICharacter;
 import com.ood.Enums.GameEnum;
 import com.ood.Enums.HeroEnum;
@@ -16,7 +13,6 @@ import com.ood.Factories.MonsterFactory;
 import com.ood.Factories.ViewFactory;
 import com.ood.Game.GameController;
 import com.ood.Game.IGame;
-import com.ood.Market.IMarket;
 import com.ood.Team.LOV_CharacterCollection;
 import com.ood.Team.SimpleCollection;
 
@@ -87,8 +83,20 @@ public class LOV_Player extends BoardGamePlayer{
     }
 
     public void chooseActionAndMove(){
-//        getView().displayPlayersTurn(getName());
-//        char action=getView().collectPlayersAction(LOV_Constant.VALID_ACTIONS_ONMAP, LOV_Constant.ACTION_HELP_ONMAP);
+        if(!getIsPCPlayer())
+            getView().displayPlayersTurn(getName());
+        CharacterController controller=new CharacterController(getIsPCPlayer());
+        for(int i=0;i<characterCollection.size();i++)
+        {
+            ICharacter character=characterCollection.getItemAt(i);
+            controller.setCharacter(character);
+            if(!getIsPCPlayer())
+                view.reportCharacterInfo(character);
+            controller.setGame(getGame());
+            controller.setJudge(getGame().getJudge());
+
+            executeOnMapCommand(controller);
+        }
 //        action=Character.toLowerCase(action);
 //        switch (action)
 //        {
@@ -179,6 +187,84 @@ public class LOV_Player extends BoardGamePlayer{
 //        }
 //        if(getGame().getJudge().judgeGameOver())
 //            return;
+    }
+
+    public void executeOnMapCommand( CharacterController controller)
+    {
+        char action=Character.toLowerCase(getView().collectUsersAction(LOV_Constant.VALID_ACTIONS_ONMAP, LOV_Constant.ACTION_HELP_ONMAP));
+        boolean operationSucceed=false;
+        switch (action)
+        {
+            case 'a':
+                operationSucceed=controller.moveLeft();
+                if(!operationSucceed)
+                {
+                    executeOnMapCommand(controller);
+                }
+                break;
+            case 'w':
+                operationSucceed=controller.moveUp();
+                if(!operationSucceed)
+                {
+                    executeOnMapCommand(controller);
+                }
+                break;
+            case 's':
+                operationSucceed=controller.moveDown();
+                if(!operationSucceed)
+                {
+                    executeOnMapCommand(controller);
+                }
+                break;
+            case 'd':
+                operationSucceed=controller.moveRight();
+                if(!operationSucceed)
+                {
+                    executeOnMapCommand(controller);
+                }
+//                if(getGame().getJudge().boardCanPassAt(getGame().getBoard(),position.getRow(),position.getCol()+1)){
+//                    getGame().getBoard().movePiece(this,position.getRow(),position.getCol()+1);
+//                    getGame().getBoard().show();
+//                    if(getGame().getJudge().isEncounterMonster(rollDice())&&!getGame().getJudge().canEnterMarket(this.position))
+//                    {
+//                        IBattle b=new LOV_Battle(getGame().getTeam());
+//                        b.fight();
+//                    }
+//                }else
+//                {
+//                    getView().displayInvalidInputMessage();
+//                    chooseActionAndMove();
+//                }
+                break;
+            case 'q':
+                getView().displayGameOver();
+                getView().displayGoodByeMessage();
+                System.exit(0);
+                break;
+            case 'i':
+                getInfo();
+                chooseActionAndMove();
+                break;
+            case 'm':
+                operationSucceed=controller.characterEnterMarket();
+//
+//                if(getGame().getJudge().canEnterMarket(position))
+//                {
+//                    IMarket m= (IMarket) getGame().getBoard().getGrid(position).getMarket();
+//                    for(int i=0;i<characterCollection.size();i++){
+//                        m.enterMarket((GeneralHero) characterCollection.getItemAt(i));
+//                    }
+//                }
+                if(!operationSucceed){
+                    getView().displayInvalidInputMessage();
+                    chooseActionAndMove();
+                }
+                break;
+            default:
+                return;
+        }
+        if(getGame().getJudge().judgeGameOver())
+            return;
     }
 
     public void getInfo(){

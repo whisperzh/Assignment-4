@@ -95,7 +95,7 @@ public class LOV_Battle implements IBattle{
 
     private void chooseActionAndDo(ICharacter hero){
         //get player's choice.
-        char action=Character.toLowerCase(view.collectPlayersAction(LOV_Constant.VALID_ACTIONS_INBATTLE, LOV_Constant.ACTION_HELP_INBATTLE));
+        char action=Character.toLowerCase(view.collectUsersAction(LOV_Constant.VALID_ACTIONS_INBATTLE, LOV_Constant.ACTION_HELP_INBATTLE));
         switch (action)
         {
             case 'a':

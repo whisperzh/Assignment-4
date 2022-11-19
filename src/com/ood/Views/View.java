@@ -102,7 +102,7 @@ public abstract class View implements VisualModule{
         jout(Color.BLUE+"-------------------------BYE-------------------------"+Color.BLUE);}
 
     public void displayInvalidInputMessage(){
-        jout(Color.RED+"Your Input is Invalid Please Input Again!"+Color.RED);
+        System.out.println(Color.RED+"Your Input is Invalid Please Input Again!"+Color.RED);
     }
 
     public void displayInvalidInputMessage(String message){

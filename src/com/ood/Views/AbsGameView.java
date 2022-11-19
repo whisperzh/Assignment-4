@@ -38,7 +38,7 @@ public abstract class AbsGameView extends View{
 
     public abstract void displayCharactersInfo(SimpleCollection<ICharacter> characterCollection);
 
-    public char collectPlayersAction(char[] validActions,String  correspondentHelp) {
+    public char collectUsersAction(char[] validActions, String  correspondentHelp) {
         char action=' ';
         String reminder="Please input an action\n";
         Set<Character> validSet=new HashSet<>();
@@ -78,4 +78,6 @@ public abstract class AbsGameView extends View{
     }
 
     public abstract int collectCharactersCount();
+
+    public abstract void reportCharacterInfo(ICharacter character);
 }

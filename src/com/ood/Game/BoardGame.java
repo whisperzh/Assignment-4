@@ -49,17 +49,22 @@ public abstract class BoardGame<T extends IPlayer> implements IGame{
         return view;
     }
 
-    public IGameJudge getJudge() {
+    public static IGameJudge getJudgeInstance() {
         return judge;
-    }
-
-    public void setJudge(IGameJudge judge) {
-        this.judge = judge;
     }
 
     @Override
     public IBoard getBoard() {
         return board;
+    }
+
+    public IGameJudge getJudge(){
+        return judge;
+    }
+
+    @Override
+    public void setJudge(IGameJudge judge) {
+        BoardGame.judge = judge;
     }
 
     public int getPlayerCount() {

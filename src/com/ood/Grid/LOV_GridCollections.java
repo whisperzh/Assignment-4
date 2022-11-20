@@ -25,8 +25,8 @@ public class LOV_GridCollections extends GridCollections<Plain>{
     }
 
     @Override
-    public void setGridAt(Plain grid, int x, int y) {
-        getGrids().get(y).set(x,grid);
+    public void setGridAt(Plain grid, int row, int col) {
+        getGrids().get(row).set(col,grid);
     }
 
     public void setGridTypeAt(int x, int y, LOVGridEnum type){

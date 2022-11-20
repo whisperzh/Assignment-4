@@ -6,6 +6,7 @@ import com.ood.Characters.GeneralHero;
 import com.ood.Characters.ICharacter;
 import com.ood.Enums.LOVGridEnum;
 import com.ood.Game.IGame;
+import com.ood.Grid.Nexus;
 import com.ood.Item.IItem;
 import com.ood.Item.Spell;
 
@@ -32,7 +33,9 @@ public class LOV_Judge extends BoardGameJudge{
 
     @Override
     public boolean canEnterMarket(Vector2 currentPosition) {
-        return game.getBoard().getGrid(currentPosition).getType().equals(LOVGridEnum.MARKET);
+        if(game.getBoard().getGrid(currentPosition)instanceof Nexus)
+            return true;
+        return false;
     }
 
     @Override

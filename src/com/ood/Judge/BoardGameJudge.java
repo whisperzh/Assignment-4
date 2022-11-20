@@ -18,12 +18,13 @@ public abstract class BoardGameJudge implements IGameJudge{
 
     @Override
     public boolean boardCanPassAt(IBoard board, int row, int col) {
-        try {
-            return board.getGrid(row, col).isCanPass();
-        }catch (Exception e)
-        {
-            return false;
-        }
+//        try {
+//            return board.getGrid(row, col).isCanPass();
+//        }catch (Exception e)
+//        {
+//            return false;
+//        }
+    return false;
     }
 
 }

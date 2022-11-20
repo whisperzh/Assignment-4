@@ -15,7 +15,7 @@ public class Color {
     public static final String RED_BACKGROUND="\u001B[41m";
     public static final String GREEN_BACKGROUND="\u001B[42m";
     public static final String YELLOW_BACKGROUND="\u001B[43m";
-    public static final String BLUE_BACKGROUND="\u001B[43m";
+    public static final String BLUE_BACKGROUND="\u001B[34m";
     public static final String PURPLE_BACKGROUND="\u001B[45m";
     public static final String CYAN_BACKGROUND="\u001B[46m";
     public static final String WHITE_BACKGROUND="\u001B[47m";

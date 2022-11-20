@@ -34,7 +34,7 @@ public abstract class AbsGameView extends View{
 
     public abstract void displayParserInfo(ParseCollection parseCollection, boolean showIndex);
 
-    public abstract int displayPlayerChooseCharacter(int bound, String name);
+    public abstract int displayPlayerChooseCharacter(int bound, String name,int lane);
 
     public abstract void displayCharactersInfo(SimpleCollection<ICharacter> characterCollection);
 

@@ -9,7 +9,7 @@ import com.ood.Util.IConfigParser;
  */
 public class GameControllerView extends View{
     String [] gameList={
-            "<Legends: Monsters and Heroes>",
+            "<Legends of Valor>",
     };
     public GameControllerView() {
 

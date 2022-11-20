@@ -72,6 +72,11 @@ public class MarketView extends AbsGameView{
     }
 
     @Override
+    public void reportCharacterInfo(ICharacter character) {
+
+    }
+
+    @Override
     public List<String> collectPlayersName(int size) {
         return null;
     }
@@ -92,9 +97,10 @@ public class MarketView extends AbsGameView{
     }
 
     @Override
-    public int displayPlayerChooseCharacter(int bound, String name) {
+    public int displayPlayerChooseCharacter(int bound, String name, int lane) {
         return 0;
     }
+
 
     @Override
     public void displayCharactersInfo(SimpleCollection<ICharacter> characterCollection) {

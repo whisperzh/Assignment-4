@@ -16,7 +16,7 @@ public class LOV_Game extends BoardGame<LOV_Player>{
 
     private final GameEnum type=GameEnum.LMH;
 
-    private int sizeOfATeam =LOV_Constant.PLAYER_COUNT_UPPER_BOUND;
+    private int sizeOfATeam =LOV_Constant.PLAYER_COUNT_UPPER_BOUND;//how many character a player has
     //by default is 3
 
 
@@ -33,13 +33,10 @@ public class LOV_Game extends BoardGame<LOV_Player>{
         var dataCenter=GameController.getDataCenterInstance();
         getView().displayParserInfo(dataCenter.getHeroParseCollection(),true);
 
-
-        int characterPerPlayer=getView().collectCharactersCount();
-
-        team1.getPlayerCollection().setCharacterPerPlayer(characterPerPlayer);
+        team1.getPlayerCollection().setCharacterPerPlayer(sizeOfATeam);
         team1.getPlayerCollection().playerChooseCharacter();
 
-        team2.getPlayerCollection().setCharacterPerPlayer(characterPerPlayer);
+        team2.getPlayerCollection().setCharacterPerPlayer(sizeOfATeam);
         team2.getPlayerCollection().playerChooseCharacter();
 
 

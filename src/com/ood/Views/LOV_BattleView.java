@@ -50,9 +50,10 @@ public class LOV_BattleView extends AbsGameView{
     }
 
     @Override
-    public int displayPlayerChooseCharacter(int bound, String name) {
+    public int displayPlayerChooseCharacter(int bound, String name, int lane) {
         return 0;
     }
+
 
     @Override
     public void displayCharactersInfo(SimpleCollection<ICharacter> characterCollection) {
@@ -82,6 +83,11 @@ public class LOV_BattleView extends AbsGameView{
     @Override
     public int collectCharactersCount() {
         return 0;
+    }
+
+    @Override
+    public void reportCharacterInfo(ICharacter character) {
+
     }
 
     public void displayFight(){

@@ -44,7 +44,7 @@ public abstract class GridCollections <T extends GridSpace>  {
         }
     }
 
-    abstract public void setGridAt(T grid, int x,int y);
+    abstract public void setGridAt(T grid, int row, int col);
 
     public T getGrid(int row, int col) {
         return grids.get(row).get(col);

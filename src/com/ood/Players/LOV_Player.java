@@ -62,13 +62,12 @@ public class LOV_Player extends BoardGamePlayer{
             chooseRandomMonster();
             return;
         }
-        int heroSize= characterCount;
-        while (heroSize!=0)
+        for(int i=1;i<=characterCount;i++)
         {
-            heroSize--;
-            int heroNum=view.displayPlayerChooseCharacter(GameController.getDataCenterInstance().getHeroParseCollection().dataSize()-1, getName());
+            int heroNum=view.displayPlayerChooseCharacter(GameController.getDataCenterInstance().getHeroParseCollection().dataSize()-1, getName(),i);
             HeroEnum heroType = GameController.getDataCenterInstance().getHeroType(heroNum);
             List<String> attributes=GameController.getDataCenterInstance().getHeroParseCollection().getItemsAt(heroNum);
+
             try {
                 characterCollection.addItem(HeroFactory.createHero(heroType,attributes));
             }

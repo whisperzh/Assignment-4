@@ -100,8 +100,8 @@ public class LOV_GameView extends AbsGameView {
     }
 
     @Override
-    public int displayPlayerChooseCharacter(int bound, String name) {
-        jout(name+", Please choose your hero!");
+    public int displayPlayerChooseCharacter(int bound, String name,int lane) {
+        jout(name+", Please choose your hero in line "+Integer.toString(lane));
         int ans= jin_BorderedInt(0,bound);
         return ans;
     }

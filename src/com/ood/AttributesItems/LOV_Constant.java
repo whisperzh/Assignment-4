@@ -30,12 +30,12 @@ public class LOV_Constant {
 //    public static final String MARKET=" \uD83D\uDED2 ";
 //    public static final String PLAYER_ICON =" \uD83E\uDDD4";
 
-    public static final String PLAIN_ICON=Color.PURPLE_BACKGROUND+"  "+Color.ANSI_RESET;
+    public static final String PLAIN_ICON=Color.WHITE_BACKGROUND+"  "+Color.ANSI_RESET;
     public static final String CAVE_ICON=Color.YELLOW_BACKGROUND+"  "+Color.ANSI_RESET;
     public static final String BUSH_ICON=Color.GREEN_BACKGROUND+"  "+Color.ANSI_RESET;
     public static final String INACCESSIBLE_ICON=Color.BLACK_BACKGROUND+"  "+Color.ANSI_RESET;
     public static final String NEXUS_ICON=Color.CYAN_BACKGROUND+"  "+Color.ANSI_RESET;
-    public static final String KOULOU_ICON=Color.BLUE_BACKGROUND+"  "+Color.ANSI_RESET;
+    public static final String KOULOU_ICON=Color.PURPLE_BACKGROUND+"  "+Color.ANSI_RESET;
     public static final String CHARACTER_ICON ="H";
     public static final String MONSTER_ICON="M";
 
@@ -89,8 +89,11 @@ public class LOV_Constant {
     //Maps
 
     public static final List<Vector2> INACCESSIBLE_LIST =new ArrayList<>(Arrays.asList(
-            new Vector2(2,0), new Vector2(2,1),new Vector2(2,2), new Vector2(2,3),
-            new Vector2(2,4), new Vector2(2,5),new Vector2(2,6), new Vector2(2,7)
+            new Vector2(0,2), new Vector2(1,2),new Vector2(2,2), new Vector2(3,2),
+            new Vector2(4,2), new Vector2(5,2),new Vector2(6,2), new Vector2(7,2),
+            
+            new Vector2(0,5), new Vector2(1,5),new Vector2(2,5), new Vector2(3,5),
+            new Vector2(4,5), new Vector2(5,5),new Vector2(6,5), new Vector2(7,5)
              ));
     public static final List<Vector2> NEXUS_LIST =new ArrayList<>(Arrays.asList(
             new Vector2(0,0), new Vector2(0,1), new Vector2(0,3),

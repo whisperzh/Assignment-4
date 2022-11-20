@@ -2,10 +2,10 @@ package com.ood.Board;
 
 import com.ood.AttributesItems.LOV_Constant;
 import com.ood.AttributesItems.Vector2;
-import com.ood.Grid.GridSpace;
-import com.ood.Grid.Inaccessible;
-import com.ood.Grid.Nexus;
+import com.ood.Grid.*;
 import com.ood.Views.LOV_BoardView;
+
+import java.util.Random;
 
 
 /**
@@ -17,6 +17,7 @@ public class LOV_board extends MovableBoard{
         super();
         generateInaccessible();
         generateNexus();
+        randomizeBoard();
         setView(new LOV_BoardView());
         getView().initBoardView(getRowNum(),getColNum());
     }
@@ -25,6 +26,7 @@ public class LOV_board extends MovableBoard{
         super(row, col);
         generateInaccessible();
         generateNexus();
+        randomizeBoard();
         setView(new LOV_BoardView());
         getView().initBoardView(row,col);
     }
@@ -48,8 +50,40 @@ public class LOV_board extends MovableBoard{
 
     @Override
     public void show() {
-        getView().updateGraphicalGrid(getGridCollections());
-        getView().displayBoard();
+//        getView().updateGraphicalGrid(getGridCollections());
+        getView().displayBoard(getGridCollections());
+    }
+
+    private void randomizeBoard(){
+        Random r=new Random();
+        for(int i=0;i<getRowNum();i++)
+        {
+            for(int j=0;j<getColNum();j++)
+            {
+                var g=getGridCollections().getGrid(i,j);
+                if (g instanceof Inaccessible || g instanceof Nexus) {
+                    continue;
+                }
+                else
+                {
+                    int num=r.nextInt(60);
+                    if(num<30)
+                    {
+                        if(num<10)
+                        {
+                            setGridAt(i,j,new Bush());
+                        }else if(num<20 && num>=10)
+                        {
+                            setGridAt(i,j,new Cave());
+                        }else{
+                            setGridAt(i,j,new Koulou());
+                        }
+                    }
+
+                }
+
+            }
+        }
     }
 
 }

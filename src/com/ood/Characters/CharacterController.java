@@ -43,6 +43,10 @@ public class CharacterController {
         return character.getPosition().getRow();
     }
 
+    /**
+     * Call this method would make private Character variable move left
+     * @return
+     */
     public boolean moveLeft()
     {
         IBoard board=game.getBoard();
@@ -59,6 +63,10 @@ public class CharacterController {
         return false;
     }
 
+    /**
+     * Call this method would make private Character variable move up
+     * @return
+     */
     public boolean moveUp()
     {
         IBoard board=game.getBoard();
@@ -70,6 +78,11 @@ public class CharacterController {
         return false;
     }
 
+
+    /**
+     * Call this method would make private Character variable move right
+     * @return
+     */
     public boolean moveRight()
     {
         IBoard board=game.getBoard();
@@ -81,6 +94,10 @@ public class CharacterController {
         return false;
     }
 
+    /**
+     * Call this method would make private Character variable move down
+     * @return
+     */
     public boolean moveDown()
     {
         IBoard board=game.getBoard();
@@ -96,6 +113,10 @@ public class CharacterController {
         return character;
     }
 
+    /**
+     * Call this method would make private Character enter market
+     * @return
+     */
     public boolean characterEnterMarket(){
         if(!judge.canEnterMarket(character.getPosition()))
             return false;

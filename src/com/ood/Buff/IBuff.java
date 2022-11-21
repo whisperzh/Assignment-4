@@ -7,5 +7,5 @@ import com.ood.Characters.ICharacter;
  * @param <T>
  */
 public interface IBuff<T extends ICharacter> {
-    void doEffect(T character);
+    void doEffect(T character);//do effect on characters who use it
 }

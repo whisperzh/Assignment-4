@@ -84,6 +84,12 @@ public class CharacterInventory implements IInventory<IItem>{
         return ans;
     }
 
+    /**
+     * related with
+     * @param data
+     * @param title
+     * @return
+     */
     private List<String> combineDataAndTitle(List<String> data, List<String> title)
     {
         List<String > ans=new ArrayList<>();

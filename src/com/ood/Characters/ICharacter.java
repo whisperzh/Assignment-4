@@ -34,6 +34,10 @@ public interface ICharacter extends IMove {
     void recover();
     boolean isAlive();
     float takeDamage(float damage);
+    /**
+     * return all attribute by putting them into a map
+     * @return
+     */
     Map<String, String> getAllAttribute();
     float physicalAttack(ICharacter character);
 

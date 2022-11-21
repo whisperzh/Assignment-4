@@ -38,6 +38,9 @@ public class LOV_GridCollections extends GridCollections<Plain>{
 
     }
 
+    /**
+     * Initialize all grids as Plain
+     */
     private void initGrids(){
         for(int i=0;i<getRow();i++)
         {

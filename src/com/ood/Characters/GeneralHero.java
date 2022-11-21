@@ -62,7 +62,6 @@ public abstract class GeneralHero implements ICharacter{
         this.type = type;
     }
 
-
     @Override
     public void levelUp() {
         MP*=1.1;
@@ -209,6 +208,7 @@ public abstract class GeneralHero implements ICharacter{
         return spellBaseDamage+spellBaseDamage*dexterity/10000f;
     }
 
+
     @Override
     public Map<String, String> getAllAttribute() {
         Map<String ,String > ans=new HashMap<>();
@@ -293,6 +293,10 @@ public abstract class GeneralHero implements ICharacter{
         return dmg;
     }
 
+    /**
+     * get Spell using variables
+     * @return
+     */
     public int getSpellRam() {
         return spellIndexRam;
     }
@@ -301,6 +305,10 @@ public abstract class GeneralHero implements ICharacter{
         this.spellIndexRam = spellRam;
     }
 
+    /**
+     * use item[input] in the inventory
+     * @param input
+     */
     @Override
     public void use(int input) {
         IItem item=inventory.get(input);

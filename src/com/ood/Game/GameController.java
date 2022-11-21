@@ -24,6 +24,9 @@ public class GameController {
         gameControllerView= (GameControllerView) ViewFactory.createView(ViewEnum.CONTROLLER);
     }
 
+    /**
+     * Ask the player what he wants to play with
+     */
     public void chooseGame(){
         gameControllerView.displayGameChoose();
         gameChoice=gameControllerView.collectUsersGameChoice();

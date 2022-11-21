@@ -81,6 +81,7 @@ public abstract class MovableBoard implements IBoard{
         return getGrid(position.getRow(),position.getCol());
     }
 
+    @Override
     public void movePiece(ICharacter character, int row, int col){
         Vector2 originalPos= character.getPosition();
         getGrid(originalPos).updateIcon();

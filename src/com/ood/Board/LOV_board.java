@@ -31,6 +31,9 @@ public class LOV_board extends MovableBoard{
         getView().initBoardView(row,col);
     }
 
+    /**
+     * generate Inaccessible Grids
+     */
     public void generateInaccessible(){
         for(int i = 0; i< LOV_Constant.INACCESSIBLE_LIST.size(); i++)
         {
@@ -40,6 +43,9 @@ public class LOV_board extends MovableBoard{
 
     }
 
+    /**
+     * generate Nexus Grids
+     */
     private void generateNexus(){
         for(int i = 0; i< LOV_Constant.NEXUS_LIST.size(); i++)
         {
@@ -54,6 +60,9 @@ public class LOV_board extends MovableBoard{
         getView().displayBoard(getGridCollections());
     }
 
+    /**
+     *     Randomly generate Koulou, Cave , Bush and etc.
+     */
     private void randomizeBoard(){
         Random r=new Random();
         for(int i=0;i<getRowNum();i++)

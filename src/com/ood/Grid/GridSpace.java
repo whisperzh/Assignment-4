@@ -15,4 +15,8 @@ public interface GridSpace<T extends Enum> {
     void setIcon(String icon);
     String getDefaultIcon();
     void updateIcon();
+
+    public boolean isCanPass(){
+
+    }
 }

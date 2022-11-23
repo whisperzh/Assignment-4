@@ -5,6 +5,7 @@ import com.ood.AttributesItems.LOV_HeroSkill;
 import com.ood.AttributesItems.Vector2;
 import com.ood.AttributesItems.Wallet;
 import com.ood.Buff.IBuff;
+import com.ood.Enums.CharacterAttributeEnum;
 import com.ood.Enums.HeroEnum;
 import com.ood.Inventory.CharacterInventory;
 import com.ood.Inventory.IInventory;
@@ -222,7 +223,7 @@ public abstract class GeneralHero implements ICharacter{
         ans.put("damage", String.valueOf(getDamageVal()));
         ans.put("defense", String.valueOf(getDefense()));
         String skillLevel="";
-        for(var c:skills.keySet())
+        for(CharacterAttributeEnum c:skills.keySet())
         {
             skillLevel+=c.toString()+" ";
             skillLevel+=String.format("%.2f",skills.get(c))+", ";

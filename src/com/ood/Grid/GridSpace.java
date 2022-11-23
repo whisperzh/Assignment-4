@@ -17,8 +17,4 @@ public interface GridSpace<T extends Enum> {
     void setMonsterSlot(ICharacter monster);
     String getDefaultIcon();
     void updateIcon();
-
-    public boolean isCanPass(){
-
-    }
 }

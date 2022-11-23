@@ -63,7 +63,7 @@ public class LOV_Constant {
             CAVE_ICON+" stands for cave grid\n";
 
     public static final float SHOP_DEFAULT_GOLD = 10000;
-    public static char[] VALID_ACTIONS_ONMAP =new char[]{'w','a','s','d','W','A','S','D','Q','q','I','i','m','M'};
+    public static char[] VALID_ACTIONS_ONMAP =new char[]{'w','a','s','d','W','A','S','D','Q','q','I','i','m','M','t','T'};
     public static char[] VALID_ACTIONS_INMARKET =new char[]{'B','S','E','Q','b','s','q','e'};
     public static char[] VALID_ACTIONS_INBATTLE={'A','a','I','i','V','v','Q','q'};
 

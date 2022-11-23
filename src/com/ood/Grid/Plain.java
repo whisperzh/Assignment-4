@@ -1,6 +1,7 @@
 package com.ood.Grid;
 
 import com.ood.AttributesItems.LOV_Constant;
+import com.ood.Buff.IBuff;
 import com.ood.Characters.ICharacter;
 import com.ood.Enums.LOVGridEnum;
 import com.ood.FunctionInterfaces.IGridContent;
@@ -24,6 +25,8 @@ public class Plain implements GridSpace<LOVGridEnum>{
 
     private ICharacter monsterSlot=null;
 
+    protected IBuff heroBuff;
+
     public Plain() {
         type= LOVGridEnum.PLAIN;
         defaultIcon=LOV_Constant.PLAIN_ICON;
@@ -36,7 +39,9 @@ public class Plain implements GridSpace<LOVGridEnum>{
 
     @Override
     public void setHeroSlot(ICharacter hero) {
+        //一个hero进入plain，加buff
         this.heroSlot = hero;
+        heroBuff.doEffect(hero);
     }
 
     public ICharacter getHeroSlot(){
@@ -100,6 +105,7 @@ public class Plain implements GridSpace<LOVGridEnum>{
     public void setIcon(String icon) {
         this.icon = icon;
     }
+
 
 
 }

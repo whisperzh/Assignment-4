@@ -4,6 +4,7 @@ import com.ood.AttributesItems.Equipment;
 import com.ood.AttributesItems.LOV_HeroSkill;
 import com.ood.AttributesItems.Vector2;
 import com.ood.AttributesItems.Wallet;
+import com.ood.Buff.IBuff;
 import com.ood.Enums.HeroEnum;
 import com.ood.Inventory.CharacterInventory;
 import com.ood.Inventory.IInventory;
@@ -12,10 +13,7 @@ import com.ood.Item.Potion;
 import com.ood.Item.Spell;
 import com.ood.Views.LOV_GameView;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 /**
  * An abstract Hero class, with common Hero attributes
@@ -39,6 +37,8 @@ public abstract class GeneralHero implements ICharacter{
     private LOV_GameView view;
     private Vector2 position;
 
+    private List<IBuff> buffList;
+
     public GeneralHero(List<String> attributes) {
         view=new LOV_GameView();
         inventory=new CharacterInventory();
@@ -52,6 +52,7 @@ public abstract class GeneralHero implements ICharacter{
         myWallet=new Wallet();
         myWallet.setAmount(Float.valueOf(attributes.get(5)));
         experience=Float.valueOf(attributes.get(6));
+        buffList = new ArrayList<>();
     }
 
     public HeroEnum getType() {

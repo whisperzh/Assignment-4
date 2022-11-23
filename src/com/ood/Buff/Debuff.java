@@ -19,7 +19,7 @@ public class Debuff implements IBuff<ICharacter> {
 
     @Override
     public void doEffect(ICharacter character) {
-        for(var e: attributeAffected)
+        for(CharacterAttributeEnum e: attributeAffected)
         {
             switch (e)
             {

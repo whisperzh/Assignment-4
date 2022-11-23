@@ -69,7 +69,7 @@ public class LOV_BattleView extends AbsGameView{
     public void displayCharacterInventory(ICharacter customer) {
         List<List<String>> inv=customer.getInventory().getAllItemsWithoutTitle();
         int index=0;
-        for(var lines:inv)
+        for(List<String> lines:inv)
         {
             lines.add(0,"index:"+index++);
         }

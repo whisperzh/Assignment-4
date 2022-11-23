@@ -1,6 +1,7 @@
 package com.ood.Game;
 
 import com.ood.AttributesItems.LOV_Constant;
+import com.ood.AttributesItems.LOV_DataCenter;
 import com.ood.Enums.GameEnum;
 import com.ood.Factories.GameBoardFactory;
 import com.ood.Factories.ViewFactory;
@@ -29,7 +30,7 @@ public class LOV_Game extends BoardGame<LOV_Player>{
         team1 =new LOV_Team("Hero_TEAM", getPlayerCount(),false,this);
         team2 =new LOV_Team("Monster_TEAM",getPlayerCount(),true,this);
 
-        var dataCenter=GameController.getDataCenterInstance();
+        LOV_DataCenter dataCenter=GameController.getDataCenterInstance();
         getView().displayParserInfo(dataCenter.getHeroParseCollection(),true);
 
         team1.getPlayerCollection().setCharacterPerPlayer(sizeOfATeam);

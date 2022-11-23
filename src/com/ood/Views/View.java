@@ -143,7 +143,7 @@ public abstract class View implements VisualModule{
     {
         joutDivider();
         int maxlen=0;
-        for(var l:data)
+        for(List<String> l:data)
         {
             maxlen=Math.max(maxlen,l.size());
         }

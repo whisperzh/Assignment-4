@@ -84,14 +84,14 @@ public class LOV_DataCenter {
     }
 
     public HeroEnum getHeroType(int heroNum) {
-        var line=getHeroParseCollection().getItemsAt(heroNum);
-        var ans=line.get(line.size()-1);
+        List<String> line=getHeroParseCollection().getItemsAt(heroNum);
+        String ans=line.get(line.size()-1);
         return HeroEnum.stringToEnum(ans);
     }
 
     public MonsterEnum getMonsterType(int monsterNum) {
-        var line=getMonsterParseCollection().getItemsAt(monsterNum);
-        var ans=line.get(line.size()-1);
+        List<String> line=getMonsterParseCollection().getItemsAt(monsterNum);
+        String ans=line.get(line.size()-1);
         return MonsterEnum.stringToEnum(ans);
     }
 

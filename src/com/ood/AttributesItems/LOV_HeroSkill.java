@@ -30,7 +30,7 @@ public class LOV_HeroSkill {
     }
 
     public void levelUp(){
-        for (var c:skills.keySet())
+        for (CharacterAttributeEnum c:skills.keySet())
         {
             skills.put(c,skills.get(c)*1.05f);
         }

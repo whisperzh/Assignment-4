@@ -29,7 +29,7 @@ public class Potion extends SingleUsedItem{
         this.attrIncreaseVal = Float.parseFloat(attributes.get("attribute increase"));
         this.attrAffected = new ArrayList<>();
 
-        for(var s: attributes.get("attribute affected").split("/"))
+        for(String s: attributes.get("attribute affected").split("/"))
         {
             attrAffected.add(CharacterAttributeEnum.stringToEnum(s));
         }
@@ -64,7 +64,7 @@ public class Potion extends SingleUsedItem{
         ans.add(Integer.toString(getLevel()));
         ans.add(Float.toString(getAttrIncreaseVal()));
         String attriaff="";
-        for(var s:attrAffected)
+        for(CharacterAttributeEnum s:attrAffected)
         {
             attriaff+=s+"/";
         }

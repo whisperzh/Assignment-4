@@ -20,7 +20,7 @@ public class LOV_PlayerCollection extends PlayerCollection<LOV_Player>{
 
     public LOV_PlayerCollection(int size, boolean isPCPlayer, IGame game) {
         super(size,isPCPlayer,game);
-        view= ViewFactory.createGameView(GameEnum.LMH);
+        view= ViewFactory.createGameView(GameEnum.LOV);
         if(!isPCPlayer)
             playersName=view.collectPlayersName(getPlayerSize());
         initPlayerList();
@@ -36,7 +36,7 @@ public class LOV_PlayerCollection extends PlayerCollection<LOV_Player>{
                 playerName="PC Player";
             else
                 playerName=playersName.get(i);
-            playerList.add((LOV_Player) PlayerFactory.spawnPlayer(GameEnum.LMH,playerName,getIsPCPlayer(),getGame()));
+            playerList.add((LOV_Player) PlayerFactory.spawnPlayer(GameEnum.LOV,playerName,getIsPCPlayer(),getGame()));
         }
     }
 

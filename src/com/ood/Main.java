@@ -1,5 +1,6 @@
 package com.ood;
 
+import com.ood.AttributesItems.Color;
 import com.ood.Game.GameController;
 import com.ood.Views.MainView;
 import com.ood.Views.View;

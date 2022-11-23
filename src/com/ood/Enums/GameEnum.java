@@ -4,13 +4,13 @@ package com.ood.Enums;
  * All of the game type that this project has
  */
 public enum GameEnum {
-    LMH;
+    LOV;
     public static GameEnum intToGameType(int i){
-        GameEnum type=LMH;
+        GameEnum type= LOV;
         switch (i)
         {
             case 0:
-                type=LMH;
+                type= LOV;
                 break;
             default:
                 type=null;

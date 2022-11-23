@@ -79,7 +79,16 @@ public class Plain implements GridSpace<LOVGridEnum>{
 
     @Override
     public String getIcon() {
+        updateIcon();
         return icon;
+    }
+
+    public ICharacter getMonsterSlot() {
+        return monsterSlot;
+    }
+
+    public void setMonsterSlot(ICharacter monsterSlot) {
+        this.monsterSlot = monsterSlot;
     }
 
     public String getDefaultIcon()

@@ -358,6 +358,10 @@ public abstract class GeneralHero implements ICharacter{
 
     @Override
     public void setPosition(int row, int col) {
+        if(position==null) {
+            position = new Vector2(row, col);
+            return;
+        }
         this.position.setRow(row);
         this.position.setCol(col);
     }

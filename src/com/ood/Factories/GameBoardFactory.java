@@ -12,7 +12,7 @@ public class GameBoardFactory {
         MovableBoard board=null;
         switch (gameEnum)
         {
-            case LMH:
+            case LOV:
                 board=new LOV_board();
             default:
                 break;

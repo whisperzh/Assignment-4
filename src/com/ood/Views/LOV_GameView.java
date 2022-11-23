@@ -145,7 +145,7 @@ public class LOV_GameView extends AbsGameView {
 
     @Override
     public void reportCharacterInfo(ICharacter character) {
-        jout("You are now operating "+character);
+        jout("You are now operating "+character.getName());
     }
 
     public void displayHeroFaintMessage(ICharacter character) {

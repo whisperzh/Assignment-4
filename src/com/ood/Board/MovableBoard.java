@@ -7,7 +7,6 @@ import com.ood.Grid.GridCollections;
 import com.ood.Grid.GridSpace;
 import com.ood.Grid.Plain;
 import com.ood.Grid.LOV_GridCollections;
-import com.ood.Players.LOV_Player;
 import com.ood.Views.BoardView;
 
 /**

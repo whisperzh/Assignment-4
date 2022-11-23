@@ -9,6 +9,10 @@ import java.util.regex.Pattern;
  */
 public interface ShortOutput {
     public default void jout(String str) {
+        System.out.println(str);
+    }
+
+    public default void joutWithColor(String str,String color) {
         String[] toBeProcessed=str.split(" ");
         String ans="";
         for(int i=0;i<toBeProcessed.length;i++)

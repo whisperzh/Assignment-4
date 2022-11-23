@@ -140,4 +140,32 @@ public class LOV_Judge extends BoardGameJudge{
         return false;
     }
 
+    @Override
+    public boolean boardCanTeleportAt(IBoard board, int row, int col,ICharacter character){
+        //first situation, cannot tp behind monster
+        Vector2 monsterPos=board.getMonsterPosition(col);
+        if(monsterPos==null)
+            return true;
+        else
+        {
+            if(monsterPos.getCol()<col)
+                return false;
+        }
+        //the tgt grid has a character with the same type of this input argument
+        if(character instanceof GeneralMonster)
+        {
+            if(board.getGrid(row,col).getMonsterSlot()!=null)
+                return false;
+        }else
+        {
+           //instance of hero
+            if(board.getGrid(row,col).getHeroSlot()!=null)
+                return false;
+        }
+        return true;
+
+
+    }
+
+
 }

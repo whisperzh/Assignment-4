@@ -125,4 +125,15 @@ public class CharacterController {
         m.enterMarket((GeneralHero) character);
         return true;
     }
+
+    public boolean characterTeleport(Vector2 targetPosition){
+        IBoard board=game.getBoard();
+        if(judge.boardCanTeleportAt(game.getBoard(), targetPosition.getRow(), targetPosition.getCol(), character)){
+            board.movePiece(character, targetPosition.getRow(), targetPosition.getCol());
+            board.show();
+            return true;
+
+        }
+        return false;
+    }
 }

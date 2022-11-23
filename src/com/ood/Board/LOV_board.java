@@ -95,4 +95,20 @@ public class LOV_board extends MovableBoard{
         }
     }
 
+    public Vector2 getMonsterPosition(int col){
+        int rows=getRowNum();
+        int colStart=Math.max(0,col-1);
+        int colEnd=Math.min(col+1,getColNum()-1);
+        for(int i=0;i<getRowNum();i++)
+        {
+            for(int j=colStart;j<=colEnd;j++)
+            {
+                GridSpace g=getGrid(i,j);
+                if(g.getMonsterSlot()!=null)
+                    return new Vector2(i,j);
+            }
+        }
+        return null;
+    }
+
 }

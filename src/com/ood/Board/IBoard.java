@@ -20,4 +20,5 @@ public interface IBoard {
     void setRowNum(int rowNum);
     void setColNum(int colNum);
     BoardView getView();                                        //return the BoardView component
+    Vector2 getMonsterPosition(int col);
 }

@@ -2,6 +2,7 @@ package com.ood.Players;
 
 import com.ood.AttributesItems.Dice;
 import com.ood.AttributesItems.LOV_Constant;
+import com.ood.AttributesItems.Vector2;
 import com.ood.Characters.CharacterController;
 import com.ood.Characters.GeneralHero;
 import com.ood.Characters.GeneralMonster;
@@ -19,6 +20,7 @@ import com.ood.Team.SimpleCollection;
 
 import java.util.List;
 import java.util.Random;
+import java.util.Vector;
 
 /**
  * Concrete class of Board Game PLayer
@@ -262,6 +264,14 @@ public class LOV_Player extends BoardGamePlayer{
 //                        m.enterMarket((GeneralHero) characterCollection.getItemAt(i));
 //                    }
 //                }
+                if(!operationSucceed){
+                    getView().displayInvalidInputMessage();
+                    chooseActionAndMove();
+                }
+                break;
+            case 't':
+                Vector2 tgtPosition=getView().collectPlayerInputPosition(getGame().getBoard().getRowNum(),getGame().getBoard().getColNum());
+                operationSucceed=controller.characterTeleport(tgtPosition);
                 if(!operationSucceed){
                     getView().displayInvalidInputMessage();
                     chooseActionAndMove();

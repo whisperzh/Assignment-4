@@ -69,7 +69,7 @@ public class LOV_board extends MovableBoard{
         {
             for(int j=0;j<getColNum();j++)
             {
-                var g=getGridCollections().getGrid(i,j);
+                GridSpace g=getGridCollections().getGrid(i,j);
                 if (g instanceof Inaccessible || g instanceof Nexus) {
                     continue;
                 }

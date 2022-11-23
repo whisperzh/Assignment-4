@@ -38,7 +38,7 @@ public class ParseCollection {
 
     public int dataSize() {
         int sum=0;
-        for(var p:parsers)
+        for(IConfigParser p:parsers)
             sum+=p.size();
         return sum;
     }

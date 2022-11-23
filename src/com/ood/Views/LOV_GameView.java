@@ -4,6 +4,7 @@ import com.ood.Characters.ICharacter;
 import com.ood.Inventory.IInventory;
 import com.ood.Item.IItem;
 import com.ood.Team.SimpleCollection;
+import com.ood.Util.IConfigParser;
 import com.ood.Util.ParseCollection;
 
 import java.util.ArrayList;
@@ -65,7 +66,7 @@ public class LOV_GameView extends AbsGameView {
         int startIndex=0;
         for(int i=0;i<parseCollection.getParserSize();i++)
         {
-            var parser=parseCollection.getParserAt(i);
+            IConfigParser parser=parseCollection.getParserAt(i);
             String fileName=parser.getFileName();
             jout(fileName);
 

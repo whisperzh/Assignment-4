@@ -16,7 +16,7 @@ import java.util.List;
 public class MarketView extends AbsGameView{
     public void showMenu(List<List<String>> data){
         int index=0;
-        for(var lines:data)
+        for(List<String > lines:data)
         {
             lines.add(0,"index:"+index++);
         }

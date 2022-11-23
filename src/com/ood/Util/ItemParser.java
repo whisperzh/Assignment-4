@@ -54,7 +54,7 @@ public class ItemParser implements IConfigParser{
     public void createActualData(String s){
         String[] titles=s.split("\\s+");
         List<String > l=new ArrayList<>();
-        for(var st: titles)
+        for(String st: titles)
             l.add(st);
         l.add(itemEnum.toString());
         allData.add(l);

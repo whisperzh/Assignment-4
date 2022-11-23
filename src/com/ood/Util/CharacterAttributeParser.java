@@ -113,7 +113,7 @@ public class CharacterAttributeParser implements IConfigParser{
     private void createActualData(String s){
         String[] titles=s.split("\\s+");
         List<String > l=new ArrayList<>();
-        for(var st: titles)
+        for(String st: titles)
             l.add(st);
         l.add(characterEnum.toString());
         allData.add(l);

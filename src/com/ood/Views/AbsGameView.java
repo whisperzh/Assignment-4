@@ -42,7 +42,7 @@ public abstract class AbsGameView extends View{
         char action=' ';
         String reminder="Please input an action\n";
         Set<Character> validSet=new HashSet<>();
-        for(var v : validActions)
+        for(char v : validActions)
             validSet.add(v);
         do {
             String act = jin_Str(reminder+correspondentHelp);

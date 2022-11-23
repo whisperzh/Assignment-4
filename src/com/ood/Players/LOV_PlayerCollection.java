@@ -42,7 +42,7 @@ public class LOV_PlayerCollection extends PlayerCollection<LOV_Player>{
 
     @Override
     public void playerChooseCharacter() {
-        for(var p: playerList)
+        for(LOV_Player p: playerList)
         {
             p.chooseYourHero();
         }
@@ -51,7 +51,7 @@ public class LOV_PlayerCollection extends PlayerCollection<LOV_Player>{
 
     @Override
     public void setCharacterPerPlayer(int count) {
-        for(var p:playerList)
+        for(LOV_Player p:playerList)
             p.setCharacterCount(count);
     }
 }

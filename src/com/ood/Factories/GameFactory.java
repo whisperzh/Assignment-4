@@ -11,7 +11,7 @@ public class GameFactory {
     public static IGame createGame(GameEnum gameEnum) {
         switch (gameEnum)
         {
-            case LMH:
+            case LOV:
                 return new LOV_Game();
             default:
                 break;

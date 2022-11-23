@@ -2,8 +2,9 @@ package com.ood.Players;
 
 import com.ood.AttributesItems.Dice;
 import com.ood.AttributesItems.LOV_Constant;
-import com.ood.Battle.IBattle;
 import com.ood.Characters.CharacterController;
+import com.ood.Characters.GeneralHero;
+import com.ood.Characters.GeneralMonster;
 import com.ood.Characters.ICharacter;
 import com.ood.Enums.GameEnum;
 import com.ood.Enums.HeroEnum;
@@ -31,7 +32,7 @@ public class LOV_Player extends BoardGamePlayer{
     public LOV_Player(boolean isPCPlayer, String name, IGame game) {
         super(isPCPlayer,name,game);
         dice=new Dice(2);//initialize Dice
-        gameType= GameEnum.LMH;
+        gameType= GameEnum.LOV;
         view= ViewFactory.createGameView(gameType);
         characterCollection=new LOV_CharacterCollection();
     }
@@ -44,7 +45,11 @@ public class LOV_Player extends BoardGamePlayer{
             int monsterNum=random.nextInt(range);
             MonsterEnum monsterType = GameController.getDataCenterInstance().getMonsterType(monsterNum);
             List<String> attributes=GameController.getDataCenterInstance().getMonsterParseCollection().getItemsAt(monsterNum);
-            characterCollection.addItem(MonsterFactory.createMonster(monsterType,attributes));
+            GeneralMonster monster=MonsterFactory.createMonster(monsterType,attributes);
+            characterCollection.addItem(monster);
+            monster.setPosition(0,i*3+1);
+            getGame().getBoard().getGrid(0,i*3+1).setMonsterSlot(monster);
+
         }
 
     }
@@ -69,7 +74,10 @@ public class LOV_Player extends BoardGamePlayer{
             List<String> attributes=GameController.getDataCenterInstance().getHeroParseCollection().getItemsAt(heroNum);
 
             try {
-                characterCollection.addItem(HeroFactory.createHero(heroType,attributes));
+                GeneralHero hero=HeroFactory.createHero(heroType,attributes);
+                characterCollection.addItem(hero);
+                hero.setPosition(getGame().getBoard().getRowNum()-1,i*3-2);
+                getGame().getBoard().getGrid(getGame().getBoard().getRowNum()-1,i*3-2).setHeroSlot(hero);
             }
             catch (Exception e){
                 e.printStackTrace();

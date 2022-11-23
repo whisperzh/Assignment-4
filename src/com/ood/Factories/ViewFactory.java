@@ -33,7 +33,7 @@ public class ViewFactory {
         AbsGameView v=null;
         switch (gameEnum)
         {
-            case LMH:
+            case LOV:
                 v = new LOV_GameView();
             default:
                 break;

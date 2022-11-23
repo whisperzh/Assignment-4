@@ -30,7 +30,7 @@ public class LOV_Constant {
 //    public static final String MARKET=" \uD83D\uDED2 ";
 //    public static final String PLAYER_ICON =" \uD83E\uDDD4";
 
-    public static final String PLAIN_ICON=Color.WHITE_BACKGROUND+"  "+Color.ANSI_RESET;
+    public static final String PLAIN_ICON=Color.BLUE_BACKGROUND+"  "+Color.ANSI_RESET;
     public static final String CAVE_ICON=Color.YELLOW_BACKGROUND+"  "+Color.ANSI_RESET;
     public static final String BUSH_ICON=Color.GREEN_BACKGROUND+"  "+Color.ANSI_RESET;
     public static final String INACCESSIBLE_ICON=Color.BLACK_BACKGROUND+"  "+Color.ANSI_RESET;

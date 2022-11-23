@@ -13,7 +13,7 @@ public class PlayerFactory {
         IPlayer player;
         switch (gameType)
         {
-            case LMH:
+            case LOV:
                 player=new LOV_Player(isPCPlayer,playerName,game);
                 break;
             default:

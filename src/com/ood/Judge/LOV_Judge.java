@@ -2,14 +2,18 @@ package com.ood.Judge;
 
 import com.ood.AttributesItems.LOV_Constant;
 import com.ood.AttributesItems.Vector2;
+import com.ood.Board.IBoard;
 import com.ood.Characters.GeneralHero;
+import com.ood.Characters.GeneralMonster;
 import com.ood.Characters.ICharacter;
-import com.ood.Enums.LOVGridEnum;
 import com.ood.Game.IGame;
+import com.ood.Grid.GridSpace;
+import com.ood.Grid.Inaccessible;
 import com.ood.Grid.Nexus;
 import com.ood.Item.IItem;
 import com.ood.Item.Spell;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -91,6 +95,49 @@ public class LOV_Judge extends BoardGameJudge{
         if(character.getMP()<spell.getManaCost())
             return false;
         return true;
+    }
+
+    @Override
+    public boolean boardCanPassAt(IBoard board, int row, int col,ICharacter character) {
+        //first situation, no two character can stay in one gridcell if their types are same
+        if(board.getGrid(row,col).getHeroSlot() instanceof GeneralHero && character instanceof GeneralHero||
+                board.getGrid(row,col).getHeroSlot() instanceof GeneralMonster && character instanceof GeneralMonster)
+        {
+            return false;
+        }
+        //second situation, Hero shall not pass behind monster
+        Vector2 position=character.getPosition();
+        List<GridSpace> gridSpaces=getNeighbourNonInaccessibleGrids(position,board);
+        gridSpaces.add(board.getGrid(row,col));
+        if(monsterExistsInGrids(gridSpaces))
+            return false;
+        return true;
+    }
+
+    private List<GridSpace> getNeighbourNonInaccessibleGrids(Vector2 pos,IBoard board)
+    {
+        List<GridSpace> gridSpaces=new ArrayList<>();
+        int row=pos.getRow();
+        int col=pos.getCol();
+        if(col+1<board.getColNum()&&!(board.getGrid(row,col+1) instanceof Inaccessible))
+        {
+            gridSpaces.add(board.getGrid(row,col+1));
+        }
+        if(col-1>=0&&!(board.getGrid(row,col-1) instanceof Inaccessible))
+        {
+            gridSpaces.add(board.getGrid(row,col-1));
+        }
+        return gridSpaces;
+    }
+
+    private boolean monsterExistsInGrids(List<GridSpace> grids)
+    {
+        for(GridSpace g :grids)
+        {
+            if(g.getHeroSlot() instanceof GeneralMonster)
+                return true;
+        }
+        return false;
     }
 
 }

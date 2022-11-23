@@ -11,8 +11,10 @@ public interface GridSpace<T extends Enum> {
     void setHeroSlot(ICharacter heroSlot);
     IGridContent getMarket();
     ICharacter getHeroSlot();
+    ICharacter getMonsterSlot();
     String getIcon();
     void setIcon(String icon);
+    void setMonsterSlot(ICharacter monster);
     String getDefaultIcon();
     void updateIcon();
 

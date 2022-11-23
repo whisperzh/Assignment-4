@@ -93,13 +93,13 @@ public abstract class View implements VisualModule{
 
     public void displayWelcomeMessage(){
         joutDivider();
-        jout(Color.BLUE+"--------------WELCOME--------------"+Color.BLUE);
+        jout("--------------WELCOME--------------");
         joutDivider();
     }
 
     public void displayGoodByeMessage(){
         joutDivider();
-        jout(Color.BLUE+"-------------------------BYE-------------------------"+Color.BLUE);}
+        jout("-------------------------BYE-------------------------");}
 
     public void displayInvalidInputMessage(){
         System.out.println(Color.RED+"Your Input is Invalid Please Input Again!"+Color.RED);

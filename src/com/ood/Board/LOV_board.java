@@ -76,7 +76,7 @@ public class LOV_board extends MovableBoard{
                 else
                 {
                     int num=r.nextInt(60);
-                    if(num<30)
+                    if(num<25)
                     {
                         if(num<10)
                         {

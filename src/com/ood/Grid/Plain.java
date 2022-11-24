@@ -59,20 +59,20 @@ public class Plain implements GridSpace<LOVGridEnum>{
         }else if(heroSlot!=null&&monsterSlot!=null)
         {
             StringBuffer sb=new StringBuffer(defaultIcon);
-            sb.setCharAt(0,'M');
-            sb.setCharAt(1,'H');
+            sb.setCharAt(5,'M');
+            sb.setCharAt(6,'H');
             icon=sb.toString();
         }else if(heroSlot==null&&monsterSlot!=null)
         {
             StringBuffer sb=new StringBuffer(defaultIcon);
-            sb.setCharAt(0,'M');
-            sb.setCharAt(1,' ');
+            sb.setCharAt(5,'M');
+            sb.setCharAt(6,' ');
             icon=sb.toString();
         }else
         {
             StringBuffer sb=new StringBuffer(defaultIcon);
-            sb.setCharAt(0,' ');
-            sb.setCharAt(1,'H');
+            sb.setCharAt(5,' ');
+            sb.setCharAt(6,'H');
             icon=sb.toString();
         }
     }

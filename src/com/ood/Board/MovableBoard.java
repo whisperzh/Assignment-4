@@ -90,6 +90,12 @@ public abstract class MovableBoard implements IBoard{
     @Override
     public void movePiece(ICharacter character, int row, int col){
         Vector2 originalPos= character.getPosition();
+
+        if(character instanceof GeneralHero)
+            getGrid(originalPos).setHeroSlot(null);
+        else
+            getGrid(originalPos).setMonsterSlot(null);
+
         getGrid(originalPos).updateIcon();
         character.setPosition(row,col);
         if(character instanceof GeneralHero)

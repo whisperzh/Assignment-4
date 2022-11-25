@@ -35,4 +35,16 @@ public class Debuff implements IBuff<ICharacter> {
             }
         }
     }
+    @Override
+    public boolean hasAttribute(CharacterAttributeEnum attributeEnum) {
+        for(CharacterAttributeEnum s : attributeAffected)
+        {
+            if(attributeEnum.equals(s))
+                return true;
+        }
+
+
+        return false;
+    }
+
 }

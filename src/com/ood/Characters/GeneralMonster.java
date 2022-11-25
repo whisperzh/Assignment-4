@@ -1,6 +1,7 @@
 package com.ood.Characters;
 
 import com.ood.AttributesItems.Vector2;
+import com.ood.Buff.IBuff;
 import com.ood.Enums.MonsterEnum;
 import com.ood.Inventory.IInventory;
 import com.ood.Item.IItem;
@@ -164,6 +165,17 @@ public abstract class GeneralMonster implements ICharacter{
         float damval=getDamageVal();
         return character.takeDamage(damval);
     }
+
+    @Override
+    public void addBuff(IBuff buff) {
+
+    }
+
+    @Override
+    public void takeBuff(IBuff buff) {
+
+    }
+
 
     /**
      * monster do nothing

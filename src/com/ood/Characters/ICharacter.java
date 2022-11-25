@@ -1,5 +1,6 @@
 package com.ood.Characters;
 
+import com.ood.Buff.IBuff;
 import com.ood.FunctionInterfaces.IGridContent;
 import com.ood.Inventory.IInventory;
 import com.ood.Item.IItem;
@@ -40,9 +41,9 @@ public interface ICharacter extends IMove {
      */
     Map<String, String> getAllAttribute();
     float physicalAttack(ICharacter character);
-
     float magicalAttack(ICharacter character, Spell spell);
-
     void use(int input);
     IInventory<IItem> getInventory();
+    void addBuff(IBuff buff);
+    void takeBuff(IBuff buff);
 }

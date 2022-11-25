@@ -2,6 +2,7 @@ package com.ood.Characters;
 
 import com.ood.AttributesItems.Vector2;
 import com.ood.Board.IBoard;
+import com.ood.Board.LOV_board;
 import com.ood.Game.IGame;
 import com.ood.Judge.IGameJudge;
 import com.ood.Market.IMarket;
@@ -50,7 +51,7 @@ public class CharacterController {
     public boolean moveLeft()
     {
         IBoard board=game.getBoard();
-        if(judge.boardCanPassAt(board, getCurrRow(), getCurrCol()-1)){
+        if(judge.boardCanPassAt(board, getCurrRow(), getCurrCol()-1,character)){
             board.movePiece(character, getCurrRow(), getCurrCol()-1);
             board.show();
             return true;
@@ -69,8 +70,8 @@ public class CharacterController {
      */
     public boolean moveUp()
     {
-        IBoard board=game.getBoard();
-        if(judge.boardCanPassAt(board, getCurrRow()-1, getCurrCol())){
+        IBoard board=(LOV_board)game.getBoard();
+        if(judge.boardCanPassAt(board, getCurrRow()-1, getCurrCol(),character)){
             board.movePiece(character, getCurrRow()-1, getCurrCol());
             board.show();
             return true;
@@ -86,7 +87,7 @@ public class CharacterController {
     public boolean moveRight()
     {
         IBoard board=game.getBoard();
-        if(judge.boardCanPassAt(board, getCurrRow(), getCurrCol()+1)){
+        if(judge.boardCanPassAt(board, getCurrRow(), getCurrCol()+1,character)){
             board.movePiece(character, getCurrRow(), getCurrCol()+1);
             board.show();
             return true;
@@ -101,7 +102,7 @@ public class CharacterController {
     public boolean moveDown()
     {
         IBoard board=game.getBoard();
-        if(judge.boardCanPassAt(board, getCurrRow()+1, getCurrCol())){
+        if(judge.boardCanPassAt(board, getCurrRow()+1, getCurrCol(),character)){
             board.movePiece(character, getCurrRow()+1, getCurrCol());
             board.show();
             return true;

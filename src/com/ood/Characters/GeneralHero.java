@@ -4,6 +4,7 @@ import com.ood.AttributesItems.Equipment;
 import com.ood.AttributesItems.LOV_HeroSkill;
 import com.ood.AttributesItems.Vector2;
 import com.ood.AttributesItems.Wallet;
+import com.ood.Buff.IBuff;
 import com.ood.Enums.CharacterAttributeEnum;
 import com.ood.Enums.HeroEnum;
 import com.ood.Inventory.CharacterInventory;
@@ -13,10 +14,7 @@ import com.ood.Item.Potion;
 import com.ood.Item.Spell;
 import com.ood.Views.LOV_GameView;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 /**
  * An abstract Hero class, with common Hero attributes
@@ -40,6 +38,8 @@ public abstract class GeneralHero implements ICharacter{
     private LOV_GameView view;
     private Vector2 position;
 
+    private List<IBuff> buffList;
+
     public GeneralHero(List<String> attributes) {
         view=new LOV_GameView();
         inventory=new CharacterInventory();
@@ -53,6 +53,7 @@ public abstract class GeneralHero implements ICharacter{
         myWallet=new Wallet();
         myWallet.setAmount(Float.valueOf(attributes.get(5)));
         experience=Float.valueOf(attributes.get(6));
+        buffList=new ArrayList<>();
     }
 
     public HeroEnum getType() {
@@ -79,14 +80,20 @@ public abstract class GeneralHero implements ICharacter{
 
     @Override
     public float getDamageVal() {
+        float valWithoutBuff=strength;
+
         if(equipment.equippedWeapon())
-            return (strength+equipment.getWeaponDamage())*0.05f;
-        return strength;
+            valWithoutBuff=(strength+equipment.getWeaponDamage())*0.05f;
+        return calculateBuff(CharacterAttributeEnum.STRENGTH,valWithoutBuff);
+        //        if(equipment.equippedWeapon())
+//            return (strength+equipment.getWeaponDamage())*0.05f;
+//        return strength;
     }
 
     @Override
     public float getStrength() {
-        return strength;
+        float valWithoutBuff=strength;
+        return calculateBuff(CharacterAttributeEnum.STRENGTH,valWithoutBuff);
     }
 
     @Override
@@ -125,7 +132,9 @@ public abstract class GeneralHero implements ICharacter{
 
     @Override
     public float getHP() {
-        return HP;
+        float valWithoutBuff=HP;
+        return calculateBuff(CharacterAttributeEnum.HEALTH,valWithoutBuff);
+//        return HP;
     }
 
     @Override
@@ -134,7 +143,9 @@ public abstract class GeneralHero implements ICharacter{
     }
 
     public float getMP() {
-        return MP;
+        float valWithoutBuff=MP;
+        return calculateBuff(CharacterAttributeEnum.MANA,valWithoutBuff);
+//        return MP;
     }
 
     public void setMP(float MP) {
@@ -142,7 +153,9 @@ public abstract class GeneralHero implements ICharacter{
     }
 
     public float getDexterity() {
-        return dexterity;
+        float valWithoutBuff=dexterity;
+        return calculateBuff(CharacterAttributeEnum.DEXTERITY,valWithoutBuff);
+//        return dexterity;
     }
 
     @Override
@@ -151,7 +164,9 @@ public abstract class GeneralHero implements ICharacter{
     }
 
     public float getAgility() {
-        return agility;
+        float valWithoutBuff=agility;
+        return calculateBuff(CharacterAttributeEnum.AGILITY,valWithoutBuff);
+//        return agility;
     }
 
     @Override
@@ -365,5 +380,26 @@ public abstract class GeneralHero implements ICharacter{
         }
         this.position.setRow(row);
         this.position.setCol(col);
+    }
+
+    @Override
+    public void addBuff(IBuff buff) {
+        buffList.add(buff);
+    }
+
+    @Override
+    public void takeBuff(IBuff buff) {
+        buffList.remove(buff);
+    }
+
+    protected float calculateBuff(CharacterAttributeEnum attributeEnum,float originalval)
+    {
+        float sum=0;
+        for(IBuff b:buffList)
+        {
+            if(b.hasAttribute(attributeEnum))
+                sum+=originalval*0.1;
+        }
+        return sum+originalval;
     }
 }

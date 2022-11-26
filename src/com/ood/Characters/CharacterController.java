@@ -129,12 +129,38 @@ public class CharacterController {
 
     public boolean characterTeleport(Vector2 targetPosition){
         IBoard board=game.getBoard();
-        if(judge.boardCanTeleportAt(game.getBoard(), targetPosition.getRow(), targetPosition.getCol(), character)){
+        if(judge.boardCanTeleportAt(board, targetPosition.getRow(), targetPosition.getCol(), character)){
             board.movePiece(character, targetPosition.getRow(), targetPosition.getCol());
             board.show();
             return true;
 
         }
         return false;
+    }
+
+    public boolean characterRecall(){
+        IBoard board=game.getBoard();
+        Vector2 tgtPos=character.getSpawnPoint();
+        board.movePiece(character, tgtPos.getRow(), tgtPos.getCol());
+        board.show();
+        return true;
+    }
+
+    public void autoControl() {
+        Vector2 currPos= character.getPosition();
+        IBoard board=game.getBoard();
+        if(judge.boardCanPassAt(board,currPos.getRow()+1,currPos.getCol(),character))//if can move don't fight
+        {
+            board.movePiece(character,currPos.getRow()+1,currPos.getCol());
+            board.show();
+        }else
+        {
+            //fight
+            if(judge.enemyInAttackingRange(board,character))
+            {
+                return;
+            }
+
+        }
     }
 }

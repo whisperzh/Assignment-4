@@ -25,6 +25,7 @@ public abstract class GeneralMonster implements ICharacter{
     private Vector2 position;
     private MonsterEnum type;
     private LOV_GameView view;
+    protected Vector2 spawnPoint;
     private float agility;   //Dodge ability
 
 
@@ -245,6 +246,8 @@ public abstract class GeneralMonster implements ICharacter{
     @Override
     public void setPosition(Vector2 position) {
         this.position=position;
+        if(spawnPoint==null)
+            spawnPoint=position;
     }
 
     @Override
@@ -255,10 +258,14 @@ public abstract class GeneralMonster implements ICharacter{
         }
         this.position.setRow(row);
         this.position.setCol(col);
+        if(spawnPoint==null)
+            spawnPoint=position;
     }
 
     ///////////////////////
-
+    public Vector2 getSpawnPoint() {
+        return spawnPoint;
+    }
 
 
 }

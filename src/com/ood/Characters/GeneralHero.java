@@ -37,7 +37,7 @@ public abstract class GeneralHero implements ICharacter{
     private HeroEnum type;
     private LOV_GameView view;
     private Vector2 position;
-
+    protected Vector2 spawnPoint;
     private List<IBuff> buffList;
 
     public GeneralHero(List<String> attributes) {
@@ -369,6 +369,8 @@ public abstract class GeneralHero implements ICharacter{
 
     @Override
     public void setPosition(Vector2 position) {
+        if(spawnPoint==null)
+            spawnPoint=position;
         this.position=position;
     }
 
@@ -380,6 +382,8 @@ public abstract class GeneralHero implements ICharacter{
         }
         this.position.setRow(row);
         this.position.setCol(col);
+        if(spawnPoint==null)
+            spawnPoint=position;
     }
 
     @Override
@@ -401,5 +405,9 @@ public abstract class GeneralHero implements ICharacter{
                 sum+=originalval*0.1;
         }
         return sum+originalval;
+    }
+
+    public Vector2 getSpawnPoint() {
+        return spawnPoint;
     }
 }

@@ -21,4 +21,5 @@ public interface IGameJudge {
     boolean isEncounterMonster(List<Integer> rollDice);
     boolean transancationValid(GeneralHero customer, IItem item);
     boolean boardCanTeleportAt(IBoard board, int row, int col, ICharacter character);
+    boolean enemyInAttackingRange(IBoard board, ICharacter character);
 }

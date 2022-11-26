@@ -5,6 +5,8 @@ import com.ood.AttributesItems.Vector2;
 import com.ood.Grid.*;
 import com.ood.Views.LOV_BoardView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 
@@ -93,6 +95,24 @@ public class LOV_board extends MovableBoard{
 
             }
         }
+    }
+
+    public List<GridSpace> getHeroNexus(){
+        List<GridSpace> ans=new ArrayList<>();
+        for(int i=0;i<getColNum();i++)
+        {
+            ans.add(getGrid(getRowNum()-1,i));
+        }
+        return ans;
+    }
+
+    public List<GridSpace> getMonsterNexus(){
+        List<GridSpace> ans=new ArrayList<>();
+        for(int i=0;i<getColNum();i++)
+        {
+            ans.add(getGrid(0,i));
+        }
+        return ans;
     }
 
     public Vector2 getMonsterPosition(int col){

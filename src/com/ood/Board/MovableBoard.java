@@ -32,6 +32,7 @@ public abstract class MovableBoard implements IBoard{
         colNum=col;
         gridCollections = new LOV_GridCollections(rowNum,colNum);
     }
+
     public GridCollections<Plain> getGridCollections() {
         return gridCollections;
     }

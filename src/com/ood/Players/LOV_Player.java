@@ -92,17 +92,35 @@ public class LOV_Player extends BoardGamePlayer{
     }
 
     public void chooseActionAndMove(){
+        CharacterController controller=new CharacterController(getIsPCPlayer());
+        controller.setGame(getGame());
+        controller.setJudge(getGame().getJudge());
         if(!getIsPCPlayer())
             getView().displayPlayersTurn(getName());
-        CharacterController controller=new CharacterController(getIsPCPlayer());
+        else
+        {
+            for(int i=0;i<characterCollection.size();i++)
+            {
+                ICharacter character=characterCollection.getItemAt(i);
+                controller.setCharacter(character);
+                controller.autoControl();
+//                if(!getIsPCPlayer())
+//                    view.reportCharacterInfo(character);
+//                controller.setGame(getGame());
+//                controller.setJudge(getGame().getJudge());
+//
+//                executeOnMapCommand(controller);
+            }
+            return;
+        }
         for(int i=0;i<characterCollection.size();i++)
         {
             ICharacter character=characterCollection.getItemAt(i);
             controller.setCharacter(character);
             if(!getIsPCPlayer())
                 view.reportCharacterInfo(character);
-            controller.setGame(getGame());
-            controller.setJudge(getGame().getJudge());
+//            controller.setGame(getGame());
+//            controller.setJudge(getGame().getJudge());
 
             executeOnMapCommand(controller);
         }
@@ -208,6 +226,7 @@ public class LOV_Player extends BoardGamePlayer{
                 operationSucceed=controller.moveLeft();
                 if(!operationSucceed)
                 {
+                    view.displayInvalidInputMessage();
                     executeOnMapCommand(controller);
                 }
                 break;
@@ -215,6 +234,7 @@ public class LOV_Player extends BoardGamePlayer{
                 operationSucceed=controller.moveUp();
                 if(!operationSucceed)
                 {
+                    view.displayInvalidInputMessage();
                     executeOnMapCommand(controller);
                 }
                 break;
@@ -222,6 +242,7 @@ public class LOV_Player extends BoardGamePlayer{
                 operationSucceed=controller.moveDown();
                 if(!operationSucceed)
                 {
+                    view.displayInvalidInputMessage();
                     executeOnMapCommand(controller);
                 }
                 break;
@@ -229,6 +250,7 @@ public class LOV_Player extends BoardGamePlayer{
                 operationSucceed=controller.moveRight();
                 if(!operationSucceed)
                 {
+                    view.displayInvalidInputMessage();
                     executeOnMapCommand(controller);
                 }
 //                if(getGame().getJudge().boardCanPassAt(getGame().getBoard(),position.getRow(),position.getCol()+1)){
@@ -265,6 +287,7 @@ public class LOV_Player extends BoardGamePlayer{
 //                    }
 //                }
                 if(!operationSucceed){
+                    view.displayInvalidInputMessage();
                     getView().displayInvalidInputMessage();
                     chooseActionAndMove();
                 }
@@ -276,6 +299,9 @@ public class LOV_Player extends BoardGamePlayer{
                     getView().displayInvalidInputMessage();
                     chooseActionAndMove();
                 }
+                break;
+            case 'b':
+                controller.characterRecall();
                 break;
             default:
                 return;

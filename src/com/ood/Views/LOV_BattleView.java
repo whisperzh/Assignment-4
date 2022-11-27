@@ -1,5 +1,6 @@
 package com.ood.Views;
 
+import com.ood.AttributesItems.LOV_Constant;
 import com.ood.Characters.GeneralMonster;
 import com.ood.Characters.ICharacter;
 import com.ood.Players.IPlayer;
@@ -90,13 +91,17 @@ public class LOV_BattleView extends AbsGameView{
 
     }
 
+    public char collectPlayersAttackChoice(){
+        return collectUsersAction(LOV_Constant.VALID_ACTIONS_INBATTLE,LOV_Constant.ACTION_HELP_INBATTLE);
+    }
+
     public void displayFight(){
         joutDivider();
         jout("Ready, Fight!");
         joutDivider();
     }
 
-    public void displayAttackMonsterChoices(LOV_Team mon_team){
+    public void displayAttackMonsterChoices(List<ICharacter> monsterList){
         jout("Please choose a monster to attack");
         List<List<String >> rows=new ArrayList<>();
         List<String > title=new ArrayList<>();
@@ -105,20 +110,20 @@ public class LOV_BattleView extends AbsGameView{
         title.add("HP");
         title.add("defense");
         rows.add(title);
-        for(int i = 0; i<mon_team.size(); i++)
+//        for(int i = 0; i<mon_team.size(); i++)
+//        {
+//            IPlayer player=mon_team.getPlayerAt(i);
+        for(int j=0;j<monsterList.size();j++)
         {
-            IPlayer player=mon_team.getPlayerAt(i);
-            for(int j=0;j<player.getCharacterCount();j++)
-            {
-                GeneralMonster monster=(GeneralMonster) player.getMyCharacterAt(j);
-                List<String > line=new ArrayList<>();
-                line.add("["+ (i*player.getCharacterCount()+j) +"]");
-                line.add(monster.getName());
-                line.add(Float.toString(monster.getHP()));
-                line.add(Float.toString(monster.getDefense()));
-                rows.add(line);
-            }
+            GeneralMonster monster=(GeneralMonster) monsterList.get(j);
+            List<String> line=new ArrayList<>();
+            line.add("["+ Integer.toString(j) +"]");
+            line.add(monster.getName());
+            line.add(Float.toString(monster.getHP()));
+            line.add(Float.toString(monster.getDefense()));
+            rows.add(line);
         }
+//        }
         joutAsTable(rows);
     }
 

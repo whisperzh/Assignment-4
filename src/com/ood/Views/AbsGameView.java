@@ -87,7 +87,6 @@ public abstract class AbsGameView extends View{
         jout("Please now input col num");
         int col=jin_BorderedInt(0,colConstraint);
         return new Vector2(row,col);
-
-
     }
+
 }

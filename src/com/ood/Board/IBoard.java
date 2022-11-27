@@ -6,6 +6,8 @@ import com.ood.Grid.GridSpace;
 import com.ood.Grid.Plain;
 import com.ood.Views.BoardView;
 
+import java.util.List;
+
 /**
  *  Encapsulated all of the board methods
  */
@@ -20,5 +22,6 @@ public interface IBoard {
     void setRowNum(int rowNum);
     void setColNum(int colNum);
     BoardView getView();                                        //return the BoardView component
-    Vector2 getMonsterPosition(int col);
+    Vector2 getMonsterPositionInLane(int col);
+    List<ICharacter> getNearbyEnemy(ICharacter self);
 }

@@ -236,6 +236,7 @@ public abstract class GeneralMonster implements ICharacter{
 
     public void die(){
         view.displayMonsterDieMessage(this);
+
     }
 
     @Override
@@ -254,12 +255,14 @@ public abstract class GeneralMonster implements ICharacter{
     public void setPosition(int row, int col) {
         if(position==null) {
             position = new Vector2(row, col);
+            if(spawnPoint==null)
+                spawnPoint=new Vector2(position);
             return;
         }
         this.position.setRow(row);
         this.position.setCol(col);
         if(spawnPoint==null)
-            spawnPoint=position;
+            spawnPoint=new Vector2(position);
     }
 
     ///////////////////////

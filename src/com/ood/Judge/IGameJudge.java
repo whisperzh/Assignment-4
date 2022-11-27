@@ -22,4 +22,5 @@ public interface IGameJudge {
     boolean transancationValid(GeneralHero customer, IItem item);
     boolean boardCanTeleportAt(IBoard board, int row, int col, ICharacter character);
     boolean enemyInAttackingRange(IBoard board, ICharacter character);
+    boolean validPosition(IBoard board,int row,int col);
 }

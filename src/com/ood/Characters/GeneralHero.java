@@ -370,7 +370,7 @@ public abstract class GeneralHero implements ICharacter{
     @Override
     public void setPosition(Vector2 position) {
         if(spawnPoint==null)
-            spawnPoint=position;
+            spawnPoint=new Vector2(position);
         this.position=position;
     }
 
@@ -378,12 +378,16 @@ public abstract class GeneralHero implements ICharacter{
     public void setPosition(int row, int col) {
         if(position==null) {
             position = new Vector2(row, col);
+            if(spawnPoint==null)
+                spawnPoint=new Vector2(position);
             return;
         }
         this.position.setRow(row);
         this.position.setCol(col);
         if(spawnPoint==null)
-            spawnPoint=position;
+            spawnPoint=new Vector2(position);
+
+
     }
 
     @Override

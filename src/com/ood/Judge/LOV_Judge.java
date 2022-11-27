@@ -100,7 +100,7 @@ public class LOV_Judge extends BoardGameJudge{
         return false;
     }
 
-    private boolean validPosition(IBoard board,int row,int col)
+    public boolean validPosition(IBoard board,int row,int col)
     {
         if(row>=0&&row<board.getRowNum()&&col>=0&&col<board.getColNum())
             return true;
@@ -197,7 +197,7 @@ public class LOV_Judge extends BoardGameJudge{
     @Override
     public boolean boardCanTeleportAt(IBoard board, int row, int col,ICharacter character){
         //first situation, cannot tp behind monster
-        Vector2 monsterPos=board.getMonsterPosition(col);
+        Vector2 monsterPos=board.getMonsterPositionInLane(col);
         if(monsterPos==null)
             return true;
         else

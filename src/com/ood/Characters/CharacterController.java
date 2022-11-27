@@ -3,9 +3,15 @@ package com.ood.Characters;
 import com.ood.AttributesItems.Vector2;
 import com.ood.Board.IBoard;
 import com.ood.Board.LOV_board;
+import com.ood.Enums.ViewEnum;
+import com.ood.Factories.ViewFactory;
 import com.ood.Game.IGame;
 import com.ood.Judge.IGameJudge;
 import com.ood.Market.IMarket;
+import com.ood.Views.LOV_BattleView;
+import com.ood.Views.LOV_BoardView;
+
+import java.util.List;
 
 public class CharacterController {
     private boolean auto;
@@ -142,9 +148,11 @@ public class CharacterController {
         IBoard board=game.getBoard();
         Vector2 tgtPos=character.getSpawnPoint();
         board.movePiece(character, tgtPos.getRow(), tgtPos.getCol());
+        character.refillHP();
         board.show();
         return true;
     }
+
 
     public void autoControl() {
         Vector2 currPos= character.getPosition();
@@ -158,7 +166,22 @@ public class CharacterController {
             //fight
             if(judge.enemyInAttackingRange(board,character))
             {
-                return;
+                List<ICharacter> enemy=board.getNearbyEnemy(character);
+                if(enemy.size()==0)
+                    return;
+                else
+                {
+                    float dmg = character.physicalAttack(enemy.get(0));
+                    ((LOV_BattleView)ViewFactory.createView(ViewEnum.BATTLEFIELD)).displayAttackInfo(character, enemy.get(0), dmg);
+                    if(!enemy.get(0).isAlive())
+                    {
+                        CharacterController tmp=new CharacterController();
+                        tmp.setGame(game);
+                        tmp.setJudge(judge);
+                        tmp.setCharacter(enemy.get(0));
+                        tmp.characterRecall();
+                    }
+                }
             }
 
         }

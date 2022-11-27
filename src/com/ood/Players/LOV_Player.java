@@ -3,6 +3,8 @@ package com.ood.Players;
 import com.ood.AttributesItems.Dice;
 import com.ood.AttributesItems.LOV_Constant;
 import com.ood.AttributesItems.Vector2;
+import com.ood.Battle.IBattle;
+import com.ood.Battle.LOV_BattleEvent;
 import com.ood.Characters.CharacterController;
 import com.ood.Characters.GeneralHero;
 import com.ood.Characters.GeneralMonster;
@@ -302,6 +304,18 @@ public class LOV_Player extends BoardGamePlayer{
                 break;
             case 'b':
                 controller.characterRecall();
+                break;
+            case 'c':
+                List<ICharacter> enemy=getGame().getBoard().getNearbyEnemy(controller.getCharacter());
+                if(enemy!=null&&enemy.size()!=0)
+                {
+                    IBattle battleEvent=new LOV_BattleEvent(controller.getCharacter(),getGame());
+                    battleEvent.start();
+                }else{
+                    getView().displayInvalidInputMessage();
+                    chooseActionAndMove();
+                }
+
                 break;
             default:
                 return;

@@ -12,6 +12,7 @@ public interface IInventory<T extends IItem> {
     T consume();
     void remove(T t);
     void add(T t);
+    boolean hasSpells();
     void addParserCollection(ParseCollection pc);
     int getSize();
     T get(int index);

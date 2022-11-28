@@ -216,7 +216,17 @@ public class LOV_Judge extends BoardGameJudge{
             if(board.getGrid(row,col).getHeroSlot()!=null)
                 return false;
         }
-        return true;
+
+        if(validPosition(board,row-1,col)&&board.getGrid(row-1,col).getHeroSlot()!=null)
+        {
+            return true;
+        }else if(validPosition(board,row,col-1)&&board.getGrid(row,col-1).getHeroSlot()!=null)
+        {
+            return true;
+        }else if(validPosition(board,row,col+1)&&board.getGrid(row,col+1).getHeroSlot()!=null){
+            return true;
+        }
+        return false;
 
 
     }

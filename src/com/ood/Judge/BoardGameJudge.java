@@ -1,6 +1,7 @@
 package com.ood.Judge;
 
 import com.ood.Board.IBoard;
+import com.ood.Characters.ICharacter;
 import com.ood.Game.IGame;
 
 /**
@@ -16,10 +17,9 @@ public abstract class BoardGameJudge implements IGameJudge{
         this.game = game;
     }
 
-    @Override
-    public boolean boardCanPassAt(IBoard board, int row, int col) {
-
-        return false;
-    }
-
+//    @Override
+//    public boolean boardCanPassAt(IBoard board, int row, int col) {
+//
+//        return false;
+//    }
 }

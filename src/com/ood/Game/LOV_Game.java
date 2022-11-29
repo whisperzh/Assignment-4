@@ -52,6 +52,10 @@ public class LOV_Game extends BoardGame<LOV_Player>{
             if(judge.judgeGameOver())
                 break;
 
+            team2.move();
+            if(judge.judgeGameOver())
+                break;
+
         }
         getView().displayGameOver();
         getJudge().reset();

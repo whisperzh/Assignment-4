@@ -17,6 +17,11 @@ public class Vector2 {
     private int row;
     private int col;
 
+    public Vector2(Vector2 position) {
+        this.row=position.getRow();
+        this.col=position.getCol();
+    }
+
     public int getRow() {
         return row;
     }

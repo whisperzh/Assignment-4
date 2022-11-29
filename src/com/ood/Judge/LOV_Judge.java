@@ -3,6 +3,7 @@ package com.ood.Judge;
 import com.ood.AttributesItems.LOV_Constant;
 import com.ood.AttributesItems.Vector2;
 import com.ood.Board.IBoard;
+import com.ood.Board.LOV_board;
 import com.ood.Characters.GeneralHero;
 import com.ood.Characters.GeneralMonster;
 import com.ood.Characters.ICharacter;
@@ -32,7 +33,19 @@ public class LOV_Judge extends BoardGameJudge{
 
     @Override
     public boolean judgeGameOver() {
-        return isGameOver;
+        LOV_board board= (LOV_board) game.getBoard();
+        for(GridSpace gridSpace :board.getHeroNexus())
+        {
+            if(gridSpace.getMonsterSlot()!=null)
+                return true;
+        }
+
+        for(GridSpace gridSpace :board.getMonsterNexus())
+        {
+            if(gridSpace.getHeroSlot()!=null)
+                return true;
+        }
+        return false;
     }
 
     @Override
@@ -65,31 +78,60 @@ public class LOV_Judge extends BoardGameJudge{
         return false;
     }
 
-    public boolean battleOver(List<ICharacter> heroes, List<ICharacter> monsters)
-    {
-        int herosAlive=0;
-        for(int i=0;i<heroes.size();i++)
+    @Override
+    public boolean enemyInAttackingRange(IBoard board, ICharacter character) {
+        Vector2 currPos=character.getPosition();
+        for(int i=-1;i<=1;i++)
         {
-            if(heroes.get(i).isAlive())
-                herosAlive++;
-        }
-        if(herosAlive==0) {
-            isGameOver=true;
-            return true;
+            for(int j=-1;j<=1;j++)
+            {
+                int newRow= currPos.getRow()+i;
+                int newCol= currPos.getCol()+j;
+                if(validPosition(board,newRow,newCol))
+                {
+                    if(character instanceof GeneralMonster&&board.getGrid(newRow,newCol).getMonsterSlot()!=null)
+                        return true;
+                    else if(character instanceof GeneralHero&&board.getGrid(newRow,newCol).getHeroSlot()!=null)
+                        return true;
+                }
+            }
         }
 
-        int monsterAlive=0;
-        for(int i=0;i<monsters.size();i++)
-        {
-            if(monsters.get(i).isAlive())
-                monsterAlive++;
-        }
-        if(monsterAlive==0)
+        return false;
+    }
+
+    public boolean validPosition(IBoard board,int row,int col)
+    {
+        if(row>=0&&row<board.getRowNum()&&col>=0&&col<board.getColNum())
             return true;
         return false;
-
-
     }
+
+    //    public boolean battleOver(List<ICharacter> heroes, List<ICharacter> monsters)
+//    {
+//        int herosAlive=0;
+//        for(int i=0;i<heroes.size();i++)
+//        {
+//            if(heroes.get(i).isAlive())
+//                herosAlive++;
+//        }
+//        if(herosAlive==0) {
+//            isGameOver=true;
+//            return true;
+//        }
+//
+//        int monsterAlive=0;
+//        for(int i=0;i<monsters.size();i++)
+//        {
+//            if(monsters.get(i).isAlive())
+//                monsterAlive++;
+//        }
+//        if(monsterAlive==0)
+//            return true;
+//        return false;
+//
+//
+//    }
 
     public boolean canUseSpell(ICharacter character, Spell spell){
         if(character.getMP()<spell.getManaCost())
@@ -108,8 +150,10 @@ public class LOV_Judge extends BoardGameJudge{
         //second situation, Hero shall not pass behind monster
         Vector2 position=character.getPosition();
         List<GridSpace> gridSpaces=getNeighbourNonInaccessibleGrids(position,board);
-        gridSpaces.add(board.getGrid(row,col));
-        if(monsterExistsInGrids(gridSpaces))
+        gridSpaces.add(board.getGrid(position));
+        if(character instanceof GeneralHero && monsterExistsInGrids(gridSpaces))
+            return false;
+        if(character instanceof GeneralMonster && heroExistsInGrids(gridSpaces))
             return false;
         return true;
     }
@@ -134,10 +178,58 @@ public class LOV_Judge extends BoardGameJudge{
     {
         for(GridSpace g :grids)
         {
-            if(g.getHeroSlot() instanceof GeneralMonster)
+            if(g.getMonsterSlot() instanceof GeneralMonster)
                 return true;
         }
         return false;
     }
+
+    private boolean heroExistsInGrids(List<GridSpace> grids)
+    {
+        for(GridSpace g :grids)
+        {
+            if(g.getHeroSlot() instanceof GeneralHero)
+                return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean boardCanTeleportAt(IBoard board, int row, int col,ICharacter character){
+        //first situation, cannot tp behind monster
+        Vector2 monsterPos=board.getMonsterPositionInLane(col);
+        if(monsterPos==null)
+            return true;
+        else
+        {
+            if(monsterPos.getCol()<col)
+                return false;
+        }
+        //the tgt grid has a character with the same type of this input argument
+        if(character instanceof GeneralMonster)
+        {
+            if(board.getGrid(row,col).getMonsterSlot()!=null)
+                return false;
+        }else
+        {
+           //instance of hero
+            if(board.getGrid(row,col).getHeroSlot()!=null)
+                return false;
+        }
+
+        if(validPosition(board,row-1,col)&&board.getGrid(row-1,col).getHeroSlot()!=null)
+        {
+            return true;
+        }else if(validPosition(board,row,col-1)&&board.getGrid(row,col-1).getHeroSlot()!=null)
+        {
+            return true;
+        }else if(validPosition(board,row,col+1)&&board.getGrid(row,col+1).getHeroSlot()!=null){
+            return true;
+        }
+        return false;
+
+
+    }
+
 
 }

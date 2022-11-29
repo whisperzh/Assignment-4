@@ -2,6 +2,7 @@ package com.ood.Board;
 
 import com.ood.AttributesItems.LOV_Constant;
 import com.ood.AttributesItems.Vector2;
+import com.ood.Characters.GeneralHero;
 import com.ood.Characters.ICharacter;
 import com.ood.Grid.GridCollections;
 import com.ood.Grid.GridSpace;
@@ -31,6 +32,7 @@ public abstract class MovableBoard implements IBoard{
         colNum=col;
         gridCollections = new LOV_GridCollections(rowNum,colNum);
     }
+
     public GridCollections<Plain> getGridCollections() {
         return gridCollections;
     }
@@ -80,11 +82,27 @@ public abstract class MovableBoard implements IBoard{
         return getGrid(position.getRow(),position.getCol());
     }
 
+    /**
+     * can either move by a little step or by teleport
+     * @param character
+     * @param row
+     * @param col
+     */
     @Override
     public void movePiece(ICharacter character, int row, int col){
         Vector2 originalPos= character.getPosition();
+
+        if(character instanceof GeneralHero)
+            getGrid(originalPos).setHeroSlot(null);
+        else
+            getGrid(originalPos).setMonsterSlot(null);
+
         getGrid(originalPos).updateIcon();
         character.setPosition(row,col);
-        getGrid(row,col).setHeroSlot(character);
+        if(character instanceof GeneralHero)
+            getGrid(row,col).setHeroSlot(character);
+        else
+            getGrid(row,col).setMonsterSlot(character);
     }
+
 }

@@ -21,34 +21,51 @@ public class ABuff implements IBuff<ICharacter> {
 
     @Override
     public void doEffect(ICharacter character) {
+        character.addBuff(this);
+//        String[] attributes=info.get("attribute affected").split("/");
+//        for(String s : attributes)
+//        {
+//            CharacterAttributeEnum e=CharacterAttributeEnum.stringToEnum(s);
+//            switch (e)
+//            {
+//                case MANA:
+//                    character.setMP(character.getMP()+attributeIncrement);
+//                    break;
+//                case HEALTH:
+//                    character.setHP(character.getHP()+attributeIncrement);
+//                    break;
+//                case AGILITY:
+//                    character.setAgility(character.getAgility()+attributeIncrement);
+//                    break;
+//                case STRENGTH:
+//                    character.setStrength(character.getStrength()+attributeIncrement);
+//                    break;
+//                case ALL_HEALTH:
+//                    character.refillHP();
+//                    break;
+//                case DEFENSE:
+//                    character.setDefense(character.getDefense()+attributeIncrement);
+//                    break;
+//                case DEXTERITY:
+//                    character.setDexterity(character.getDexterity()+attributeIncrement);
+//                    break;
+//            }
+//        }
+    }
+
+    @Override
+    public boolean hasAttribute(CharacterAttributeEnum attributeEnum) {
         String[] attributes=info.get("attribute affected").split("/");
         for(String s : attributes)
         {
             CharacterAttributeEnum e=CharacterAttributeEnum.stringToEnum(s);
-            switch (e)
-            {
-                case MANA:
-                    character.setMP(character.getMP()+attributeIncrement);
-                    break;
-                case HEALTH:
-                    character.setHP(character.getHP()+attributeIncrement);
-                    break;
-                case AGILITY:
-                    character.setAgility(character.getAgility()+attributeIncrement);
-                    break;
-                case STRENGTH:
-                    character.setStrength(character.getStrength()+attributeIncrement);
-                    break;
-                case ALL_HEALTH:
-                    character.refillHP();
-                    break;
-                case DEFENSE:
-                    character.setDefense(character.getDefense()+attributeIncrement);
-                    break;
-                case DEXTERITY:
-                    character.setDexterity(character.getDexterity()+attributeIncrement);
-                    break;
-            }
+            if(e.equals(attributeEnum))
+                return true;
         }
+
+
+        return false;
     }
+
+
 }

@@ -25,7 +25,7 @@ public class Plain implements GridSpace<LOVGridEnum>{
 
     private ICharacter monsterSlot=null;
 
-    protected IBuff heroBuff;
+    protected IBuff girdBuff;
 
     public Plain() {
         type= LOVGridEnum.PLAIN;
@@ -39,9 +39,15 @@ public class Plain implements GridSpace<LOVGridEnum>{
 
     @Override
     public void setHeroSlot(ICharacter hero) {
-        //一个hero进入plain，加buff
+        if(girdBuff!=null)
+        {
+            if(hero!=null)
+                hero.addBuff(girdBuff);
+            else
+                this.heroSlot.takeBuff(girdBuff);
+        }
+
         this.heroSlot = hero;
-        heroBuff.doEffect(hero);
     }
 
     public ICharacter getHeroSlot(){
@@ -64,20 +70,20 @@ public class Plain implements GridSpace<LOVGridEnum>{
         }else if(heroSlot!=null&&monsterSlot!=null)
         {
             StringBuffer sb=new StringBuffer(defaultIcon);
-            sb.setCharAt(0,'M');
-            sb.setCharAt(1,'H');
+            sb.setCharAt(5,'M');
+            sb.setCharAt(6,'H');
             icon=sb.toString();
         }else if(heroSlot==null&&monsterSlot!=null)
         {
             StringBuffer sb=new StringBuffer(defaultIcon);
-            sb.setCharAt(0,'M');
-            sb.setCharAt(1,' ');
+            sb.setCharAt(5,'M');
+            sb.setCharAt(6,' ');
             icon=sb.toString();
         }else
         {
             StringBuffer sb=new StringBuffer(defaultIcon);
-            sb.setCharAt(0,' ');
-            sb.setCharAt(1,'H');
+            sb.setCharAt(5,' ');
+            sb.setCharAt(6,'H');
             icon=sb.toString();
         }
     }
@@ -105,7 +111,6 @@ public class Plain implements GridSpace<LOVGridEnum>{
     public void setIcon(String icon) {
         this.icon = icon;
     }
-
 
 
 }

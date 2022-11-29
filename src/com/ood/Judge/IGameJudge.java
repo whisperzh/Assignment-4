@@ -15,8 +15,12 @@ public interface IGameJudge {
     boolean judgeGameOver();
     boolean canEnterMarket(Vector2 currentPosition);
     boolean boardCanPassAt(IBoard board, int row, int col, ICharacter character);
-    boolean boardCanPassAt(IBoard board, int row, int col);
+//    boolean boardCanPassAt(IBoard board, int row, int col);
+
     void reset();
     boolean isEncounterMonster(List<Integer> rollDice);
     boolean transancationValid(GeneralHero customer, IItem item);
+    boolean boardCanTeleportAt(IBoard board, int row, int col, ICharacter character);
+    boolean enemyInAttackingRange(IBoard board, ICharacter character);
+    boolean validPosition(IBoard board,int row,int col);
 }

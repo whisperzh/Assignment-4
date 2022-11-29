@@ -1,5 +1,7 @@
 package com.ood.Characters;
 
+import com.ood.AttributesItems.Vector2;
+import com.ood.Buff.IBuff;
 import com.ood.FunctionInterfaces.IGridContent;
 import com.ood.Inventory.IInventory;
 import com.ood.Item.IItem;
@@ -31,6 +33,7 @@ public interface ICharacter extends IMove {
     float getStrength();
     void setStrength(float strength);
     void addExperience(float exp);
+    Vector2 getSpawnPoint();
     void recover();
     boolean isAlive();
     float takeDamage(float damage);
@@ -40,9 +43,9 @@ public interface ICharacter extends IMove {
      */
     Map<String, String> getAllAttribute();
     float physicalAttack(ICharacter character);
-
     float magicalAttack(ICharacter character, Spell spell);
-
     void use(int input);
     IInventory<IItem> getInventory();
+    void addBuff(IBuff buff);
+    void takeBuff(IBuff buff);
 }

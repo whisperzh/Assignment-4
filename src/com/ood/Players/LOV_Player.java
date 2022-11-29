@@ -2,6 +2,9 @@ package com.ood.Players;
 
 import com.ood.AttributesItems.Dice;
 import com.ood.AttributesItems.LOV_Constant;
+import com.ood.AttributesItems.Vector2;
+import com.ood.Battle.IBattle;
+import com.ood.Battle.LOV_BattleEvent;
 import com.ood.Characters.CharacterController;
 import com.ood.Characters.GeneralHero;
 import com.ood.Characters.GeneralMonster;
@@ -19,6 +22,7 @@ import com.ood.Team.SimpleCollection;
 
 import java.util.List;
 import java.util.Random;
+import java.util.Vector;
 
 /**
  * Concrete class of Board Game PLayer
@@ -90,17 +94,35 @@ public class LOV_Player extends BoardGamePlayer{
     }
 
     public void chooseActionAndMove(){
+        CharacterController controller=new CharacterController(getIsPCPlayer());
+        controller.setGame(getGame());
+        controller.setJudge(getGame().getJudge());
         if(!getIsPCPlayer())
             getView().displayPlayersTurn(getName());
-        CharacterController controller=new CharacterController(getIsPCPlayer());
+        else
+        {
+            for(int i=0;i<characterCollection.size();i++)
+            {
+                ICharacter character=characterCollection.getItemAt(i);
+                controller.setCharacter(character);
+                controller.autoControl();
+//                if(!getIsPCPlayer())
+//                    view.reportCharacterInfo(character);
+//                controller.setGame(getGame());
+//                controller.setJudge(getGame().getJudge());
+//
+//                executeOnMapCommand(controller);
+            }
+            return;
+        }
         for(int i=0;i<characterCollection.size();i++)
         {
             ICharacter character=characterCollection.getItemAt(i);
             controller.setCharacter(character);
             if(!getIsPCPlayer())
                 view.reportCharacterInfo(character);
-            controller.setGame(getGame());
-            controller.setJudge(getGame().getJudge());
+//            controller.setGame(getGame());
+//            controller.setJudge(getGame().getJudge());
 
             executeOnMapCommand(controller);
         }
@@ -206,6 +228,7 @@ public class LOV_Player extends BoardGamePlayer{
                 operationSucceed=controller.moveLeft();
                 if(!operationSucceed)
                 {
+                    view.displayInvalidInputMessage();
                     executeOnMapCommand(controller);
                 }
                 break;
@@ -213,6 +236,7 @@ public class LOV_Player extends BoardGamePlayer{
                 operationSucceed=controller.moveUp();
                 if(!operationSucceed)
                 {
+                    view.displayInvalidInputMessage();
                     executeOnMapCommand(controller);
                 }
                 break;
@@ -220,6 +244,7 @@ public class LOV_Player extends BoardGamePlayer{
                 operationSucceed=controller.moveDown();
                 if(!operationSucceed)
                 {
+                    view.displayInvalidInputMessage();
                     executeOnMapCommand(controller);
                 }
                 break;
@@ -227,6 +252,7 @@ public class LOV_Player extends BoardGamePlayer{
                 operationSucceed=controller.moveRight();
                 if(!operationSucceed)
                 {
+                    view.displayInvalidInputMessage();
                     executeOnMapCommand(controller);
                 }
 //                if(getGame().getJudge().boardCanPassAt(getGame().getBoard(),position.getRow(),position.getCol()+1)){
@@ -263,9 +289,33 @@ public class LOV_Player extends BoardGamePlayer{
 //                    }
 //                }
                 if(!operationSucceed){
+                    view.displayInvalidInputMessage();
                     getView().displayInvalidInputMessage();
                     chooseActionAndMove();
                 }
+                break;
+            case 't':
+                Vector2 tgtPosition=getView().collectPlayerInputPosition(getGame().getBoard().getRowNum(),getGame().getBoard().getColNum());
+                operationSucceed=controller.characterTeleport(tgtPosition);
+                if(!operationSucceed){
+                    getView().displayInvalidInputMessage();
+                    chooseActionAndMove();
+                }
+                break;
+            case 'b':
+                controller.characterRecall();
+                break;
+            case 'c':
+                List<ICharacter> enemy=getGame().getBoard().getNearbyEnemy(controller.getCharacter());
+                if(enemy!=null&&enemy.size()!=0)
+                {
+                    IBattle battleEvent=new LOV_BattleEvent(controller.getCharacter(),getGame());
+                    battleEvent.start();
+                }else{
+                    getView().displayInvalidInputMessage();
+                    chooseActionAndMove();
+                }
+
                 break;
             default:
                 return;

@@ -9,7 +9,7 @@ import java.util.List;
  */
 public abstract class SimpleCollection<T> {
 
-    private List<T> itemList;
+    protected List<T> itemList;
 
     public SimpleCollection() {
         this.itemList = new ArrayList<>();

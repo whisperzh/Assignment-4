@@ -80,4 +80,13 @@ public abstract class AbsGameView extends View{
     public abstract int collectCharactersCount();
 
     public abstract void reportCharacterInfo(ICharacter character);
+
+    public Vector2 collectPlayerInputPosition(int rowConstraint,int colConstraint){
+        jout("Please input a position:\n Please now input row num");
+        int row=jin_BorderedInt(0,rowConstraint);
+        jout("Please now input col num");
+        int col=jin_BorderedInt(0,colConstraint);
+        return new Vector2(row,col);
+    }
+
 }

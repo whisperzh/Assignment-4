@@ -42,6 +42,11 @@ public class MarketInventory implements IInventory<IItem> {
         items.add(item);
     }
 
+    @Override
+    public boolean hasSpells() {
+        return true;
+    }
+
     public void addParserCollection(ParseCollection pc){
         for(int i=0;i<pc.getParserSize();i++)
         {
@@ -62,11 +67,11 @@ public class MarketInventory implements IInventory<IItem> {
     public void decodeParser(IConfigParser parser){
         List<List<String>> info=((ItemParser)parser).getAllData();
         List<String> keys=parser.getTitle();
-        Random r=new Random();
+//        Random r=new Random();
         for(int i=0;i<info.size();i++)
         {
-            int exc=r.nextInt(5);
-            if(exc<=1){
+//            int exc=r.nextInt(5);
+//            if(exc<=1){
                 Map<String ,String> attri=new HashMap<>();
                 int j=0;
                 for(;j<keys.size()-1;j++)
@@ -75,7 +80,7 @@ public class MarketInventory implements IInventory<IItem> {
                 }
                 ItemEnum type=ItemEnum.stringToEnum(info.get(i).get(j));
                 items.add(ItemFactory.createItem(type,attri));
-            }
+//            }
         }
     }
 

@@ -33,6 +33,16 @@ public class CharacterInventory implements IInventory<IItem>{
     }
 
     @Override
+    public boolean hasSpells() {
+        for(IItem i: items)
+        {
+            if(i instanceof Spell)
+                return true;
+        }
+        return false;
+    }
+
+    @Override
     public void addParserCollection(ParseCollection pc) {
         //do Nothing
     }

@@ -2,10 +2,20 @@ package com.ood.Characters;
 
 import com.ood.AttributesItems.Vector2;
 import com.ood.Board.IBoard;
+import com.ood.Board.LOV_board;
+import com.ood.Enums.ViewEnum;
+import com.ood.Factories.ViewFactory;
 import com.ood.Game.IGame;
 import com.ood.Judge.IGameJudge;
 import com.ood.Market.IMarket;
+import com.ood.Views.LOV_BattleView;
+import com.ood.Views.LOV_BoardView;
 
+import java.util.List;
+
+/**
+ * encapsulate character's behaviors
+ */
 public class CharacterController {
     private boolean auto;
 
@@ -50,7 +60,7 @@ public class CharacterController {
     public boolean moveLeft()
     {
         IBoard board=game.getBoard();
-        if(judge.boardCanPassAt(board, getCurrRow(), getCurrCol()-1)){
+        if(judge.boardCanPassAt(board, getCurrRow(), getCurrCol()-1,character)){
             board.movePiece(character, getCurrRow(), getCurrCol()-1);
             board.show();
             return true;
@@ -69,8 +79,8 @@ public class CharacterController {
      */
     public boolean moveUp()
     {
-        IBoard board=game.getBoard();
-        if(judge.boardCanPassAt(board, getCurrRow()-1, getCurrCol())){
+        IBoard board=(LOV_board)game.getBoard();
+        if(judge.boardCanPassAt(board, getCurrRow()-1, getCurrCol(),character)){
             board.movePiece(character, getCurrRow()-1, getCurrCol());
             board.show();
             return true;
@@ -86,7 +96,7 @@ public class CharacterController {
     public boolean moveRight()
     {
         IBoard board=game.getBoard();
-        if(judge.boardCanPassAt(board, getCurrRow(), getCurrCol()+1)){
+        if(judge.boardCanPassAt(board, getCurrRow(), getCurrCol()+1,character)){
             board.movePiece(character, getCurrRow(), getCurrCol()+1);
             board.show();
             return true;
@@ -101,7 +111,7 @@ public class CharacterController {
     public boolean moveDown()
     {
         IBoard board=game.getBoard();
-        if(judge.boardCanPassAt(board, getCurrRow()+1, getCurrCol())){
+        if(judge.boardCanPassAt(board, getCurrRow()+1, getCurrCol(),character)){
             board.movePiece(character, getCurrRow()+1, getCurrCol());
             board.show();
             return true;
@@ -124,5 +134,59 @@ public class CharacterController {
         IMarket m= (IMarket) game.getBoard().getGrid(currPosition).getMarket();
         m.enterMarket((GeneralHero) character);
         return true;
+    }
+
+    public boolean characterTeleport(Vector2 targetPosition){
+        IBoard board=game.getBoard();
+        if(judge.boardCanTeleportAt(board, targetPosition.getRow(), targetPosition.getCol(), character)){
+            board.movePiece(character, targetPosition.getRow(), targetPosition.getCol());
+            board.show();
+            return true;
+
+        }
+        return false;
+    }
+
+    public boolean characterRecall(){
+        IBoard board=game.getBoard();
+        Vector2 tgtPos=character.getSpawnPoint();
+        board.movePiece(character, tgtPos.getRow(), tgtPos.getCol());
+        character.refillHP();
+        board.show();
+        return true;
+    }
+
+
+    public void autoControl() {
+        Vector2 currPos= character.getPosition();
+        IBoard board=game.getBoard();
+        if(judge.boardCanPassAt(board,currPos.getRow()+1,currPos.getCol(),character))//if can move don't fight
+        {
+            board.movePiece(character,currPos.getRow()+1,currPos.getCol());
+            board.show();
+        }else
+        {
+            //fight
+            if(judge.enemyInAttackingRange(board,character))
+            {
+                List<ICharacter> enemy=board.getNearbyEnemy(character);
+                if(enemy.size()==0)
+                    return;
+                else
+                {
+                    float dmg = character.physicalAttack(enemy.get(0));
+                    ((LOV_BattleView)ViewFactory.createView(ViewEnum.BATTLEFIELD)).displayAttackInfo(character, enemy.get(0), dmg);
+                    if(!enemy.get(0).isAlive())
+                    {
+                        CharacterController tmp=new CharacterController();
+                        tmp.setGame(game);
+                        tmp.setJudge(judge);
+                        tmp.setCharacter(enemy.get(0));
+                        tmp.characterRecall();
+                    }
+                }
+            }
+
+        }
     }
 }

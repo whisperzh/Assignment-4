@@ -1,6 +1,7 @@
 package com.ood.Characters;
 
 import com.ood.AttributesItems.Vector2;
+import com.ood.Buff.IBuff;
 import com.ood.Enums.MonsterEnum;
 import com.ood.Inventory.IInventory;
 import com.ood.Item.IItem;
@@ -24,6 +25,7 @@ public abstract class GeneralMonster implements ICharacter{
     private Vector2 position;
     private MonsterEnum type;
     private LOV_GameView view;
+    protected Vector2 spawnPoint;
     private float agility;   //Dodge ability
 
 
@@ -165,6 +167,17 @@ public abstract class GeneralMonster implements ICharacter{
         return character.takeDamage(damval);
     }
 
+    @Override
+    public void addBuff(IBuff buff) {
+
+    }
+
+    @Override
+    public void takeBuff(IBuff buff) {
+
+    }
+
+
     /**
      * monster do nothing
      * @param input
@@ -223,6 +236,7 @@ public abstract class GeneralMonster implements ICharacter{
 
     public void die(){
         view.displayMonsterDieMessage(this);
+
     }
 
     @Override
@@ -233,20 +247,28 @@ public abstract class GeneralMonster implements ICharacter{
     @Override
     public void setPosition(Vector2 position) {
         this.position=position;
+        if(spawnPoint==null)
+            spawnPoint=position;
     }
 
     @Override
     public void setPosition(int row, int col) {
         if(position==null) {
             position = new Vector2(row, col);
+            if(spawnPoint==null)
+                spawnPoint=new Vector2(position);
             return;
         }
         this.position.setRow(row);
         this.position.setCol(col);
+        if(spawnPoint==null)
+            spawnPoint=new Vector2(position);
     }
 
     ///////////////////////
-
+    public Vector2 getSpawnPoint() {
+        return spawnPoint;
+    }
 
 
 }

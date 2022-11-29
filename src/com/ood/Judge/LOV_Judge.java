@@ -141,6 +141,10 @@ public class LOV_Judge extends BoardGameJudge{
 
     @Override
     public boolean boardCanPassAt(IBoard board, int row, int col,ICharacter character) {
+
+        if(validPosition(board,row,col)==false)
+            return false;
+
         //first situation, no two character can stay in one gridcell if their types are same
         if(board.getGrid(row,col).getHeroSlot() instanceof GeneralHero && character instanceof GeneralHero||
                 board.getGrid(row,col).getHeroSlot() instanceof GeneralMonster && character instanceof GeneralMonster)
@@ -155,6 +159,12 @@ public class LOV_Judge extends BoardGameJudge{
             return false;
         if(character instanceof GeneralMonster && heroExistsInGrids(gridSpaces))
             return false;
+
+        //third situation
+        GridSpace grid=board.getGrid(row, col);
+        if(grid instanceof Inaccessible)
+            return false;
+
         return true;
     }
 

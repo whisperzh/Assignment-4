@@ -6,7 +6,9 @@ import com.ood.Enums.LOVGridEnum;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * Grid of koulou type
+ */
 public class Koulou extends Plain{
     public Koulou() {
         Map<String,String> buffAttributes=new HashMap<>();

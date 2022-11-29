@@ -6,6 +6,9 @@ import com.ood.FunctionInterfaces.IGridContent;
 import com.ood.Market.IMarket;
 import com.ood.Market.LOV_Market;
 
+/**
+ * grid of Nexus type
+ */
 public class Nexus extends Plain{
     private String tag;
 

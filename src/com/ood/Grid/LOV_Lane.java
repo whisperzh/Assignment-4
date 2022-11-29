@@ -6,6 +6,9 @@ import com.ood.Team.SimpleCollection;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * concrete class of lanes
+ */
 public class LOV_Lane extends SimpleCollection<GridSpace> implements ILane {
 
     public LOV_Lane(List<GridSpace> grids) {

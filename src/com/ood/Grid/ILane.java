@@ -4,6 +4,9 @@ import com.ood.Characters.ICharacter;
 
 import java.util.List;
 
+/**
+ * Interface of Lanes
+ */
 public interface ILane {
     boolean hasMonsterInLane();
     boolean hasHeroInLane();

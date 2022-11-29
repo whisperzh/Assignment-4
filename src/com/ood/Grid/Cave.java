@@ -7,6 +7,9 @@ import com.ood.Enums.LOVGridEnum;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Grid of Cave type
+ */
 public class Cave extends Plain{
     public Cave() {
         Map<String,String> buffAttributes=new HashMap<>();

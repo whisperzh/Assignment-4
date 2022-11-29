@@ -13,6 +13,9 @@ import com.ood.Views.LOV_BoardView;
 
 import java.util.List;
 
+/**
+ * encapsulate character's behaviors
+ */
 public class CharacterController {
     private boolean auto;
 

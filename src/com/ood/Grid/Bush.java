@@ -7,6 +7,9 @@ import com.ood.Enums.LOVGridEnum;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Grid of bush type
+ */
 public class Bush extends Plain{
     public Bush() {
         Map<String,String> buffAttributes=new HashMap<>();

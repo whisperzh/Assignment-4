@@ -1,7 +1,7 @@
 package com.ood.Enums;
 
 /**
- * All of the LMH grid status
+ * All of the LOV grid status
  */
 public enum LOVGridEnum {
     PLAIN,
